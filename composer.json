@@ -1,0 +1,10 @@
+{
+    "name": "root/mvc-20160330-g1",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Controller\\": "Controller/",
+            "Model\\": "Model/"
+        }
+    }
+}
