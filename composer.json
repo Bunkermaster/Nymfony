@@ -4,6 +4,8 @@
     "autoload": {
         "psr-4": {
             "Controller\\": "Controller/",
+            "Helper\\": "Helper/",
+            "Exception\\": "Exception/",
             "Model\\": "Model/"
         }
     }

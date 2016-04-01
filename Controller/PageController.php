@@ -10,9 +10,8 @@ class PageController
      */
     private $pdo;
 
-    public function __construct(\PDO $pdo)
+    public function __construct()
     {
-        $this->pdo = $pdo;
     }
 
     public function homeAction()
