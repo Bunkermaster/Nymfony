@@ -3,7 +3,7 @@ namespace Model;
 
 use Helper\Container;
 
-class Repository
+abstract class Repository
 {
     /**
      * @var \PDO

@@ -41,7 +41,7 @@ class Container
      */
     public static function register($serviceObject, $serviceName = null)
     {
-        // service has rto be an object, exception if nomt
+        // service has to be an object, exception if nomt
         if(!is_object($serviceObject)){
             throw new \BadMethodCallException("Container Parameter was not an object");
         }

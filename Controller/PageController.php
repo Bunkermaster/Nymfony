@@ -3,7 +3,7 @@ namespace Controller;
 
 use Model\PageRepository;
 
-class PageController
+class PageController extends Controller
 {
     /**
      * @var \PDO
@@ -23,11 +23,14 @@ class PageController
         }
         $repo = new PageRepository($this->pdo);
         $pageList = $repo->get();
-        include APP_VIEW_DIR."home.php";
+        return $this->render("home.php", [
+            'pageList' => $pageList,
+            'prenom' => $prenom
+        ]);
     }
     
     public function aboutAction()
     {
-        include APP_VIEW_DIR."about.php";
+        return $this->render("about.php");
     }
 }

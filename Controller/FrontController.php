@@ -23,12 +23,13 @@ class FrontController
         $controller = new PageController();
         switch($currRoute){
             case 'about':
-                $controller->aboutAction();
+                $methodName = "aboutAction";
                 break;
             default:
-                $controller->homeAction();
+                $methodName = "homeAction";
                 break;
         }
+        echo $controller->$methodName();
 
     }
 }
