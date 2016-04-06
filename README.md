@@ -1,4 +1,9 @@
-# Hetic web 1
-Exercice MVC
+# Exercice MVC
 
-Par Yann Le Scouarnec
+## Le Router
+Les routes sont gérées dans le fichier `routes.json`.
+
+## Le Container
+
+## La vue
+

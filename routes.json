@@ -1,0 +1,12 @@
+[
+  {
+    "name":"home",
+    "controller": "Page",
+    "method": "home"
+  },
+  {
+    "name":"about",
+    "controller": "Page",
+    "method": "about"
+  }
+]

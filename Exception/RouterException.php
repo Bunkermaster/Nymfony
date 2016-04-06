@@ -1,12 +1,14 @@
 <?php
+
 namespace Exception;
 
+
 /**
- * Class ContainerException
+ * Class RouterException
  * @author Yann Le Scouarnec <yann.le-scouarnec@hetic.net>
  * @package Exception
  */
-class ContainerException extends \Exception
+class RouterException extends \Exception
 {
 
 }

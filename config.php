@@ -1,6 +1,6 @@
 <?php
-define('APP_ROOT_DIR',__DIR__);
-define('APP_VIEW_DIR',APP_ROOT_DIR.'/View/');
+define('APP_ROOT_DIR',__DIR__."/");
+define('APP_VIEW_DIR',APP_ROOT_DIR.'View/');
 define('APP_DEFAULT_ROUTE','home');
 define('APP_DB_HOST','localhost');
 define('APP_DB_PORT','3306');

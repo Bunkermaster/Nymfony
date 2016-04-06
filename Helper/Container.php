@@ -13,6 +13,7 @@ use Exception\ContainerException;
 /**
  * service container
  * Class Container
+ * @author Yann Le Scouarnec <yann.le-scouarnec@hetic.net>
  * @package Helper
  */
 class Container

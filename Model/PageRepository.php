@@ -3,6 +3,7 @@ namespace Model;
 
 /**
  * Class PageRepository
+ * @author Yann Le Scouarnec <yann.le-scouarnec@hetic.net>
  * @package Model
  */
 class PageRepository extends Repository
