@@ -44,4 +44,12 @@ class PageController
     {
         include APP_VIEW_DIR."about.php";
     }
+
+    /**
+     *
+     */
+    public function homePostAction()
+    {
+        include APP_VIEW_DIR."ehmerde.php";
+    }
 }

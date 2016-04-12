@@ -39,7 +39,6 @@ class FrontController
         }
         // get router
         $router = new Router();
-        var_dump($router->dump());
         // get current route's info
         if(!($route = $router->getRoute($currRoute))){
             throw new FrontControllerException('Route not found');

@@ -6,6 +6,12 @@
     "method": "GET"
   },
   {
+    "name":"home",
+    "controller": "Page",
+    "action": "homePost",
+    "method": "POST"
+  },
+  {
     "name":"about",
     "controller": "Page",
     "action": "about"

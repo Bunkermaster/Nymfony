@@ -31,7 +31,9 @@ class Router
     }
 
     /**
+     * Initialize the router
      * @throws RouterException
+     * @returns void
      */
     private function init()
     {
@@ -65,11 +67,14 @@ class Router
     {
         /** @var \Helper\Request $request */
         $request = Container::getService('HelperRequest');
-        if(isset($this->routesCollection[$name])){
+        if(isset($this->routesCollection[$name][$request->HTTP['method']])){
+            
             return $this->routesCollection[$name][$request->HTTP['method']];
         } elseif(isset($this->routesCollection[$name][self::ROUTE_ALL_METHODS_PLACEHOLDER])){
+            
             return $this->routesCollection[$name][self::ROUTE_ALL_METHODS_PLACEHOLDER];
         } else {
+            
             return false;
         }
     }
