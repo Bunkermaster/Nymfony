@@ -8,7 +8,9 @@
 
 namespace Controller;
 
-
+use Exception\FrontControllerException;
+use Helper\Container;
+use Helper\Request;
 use Helper\Router;
 
 /**
@@ -20,35 +22,35 @@ class FrontController
 {
     /**
      * FrontController constructor.
+     * @throws FrontControllerException
      */
     public function __construct()
     {
+        // init request object
+        $request = new Request();
+        Container::register($request);
+        // init router
         if(isset($_GET['route'])){
             $currRoute = $_GET['route'];
+        } elseif(isset($_POST['route'])) {
+            $currRoute = $_POST['route'];
         } else {
             $currRoute = APP_DEFAULT_ROUTE;
         }
-        // EN PHP 7
-        // $currRoute = $_GET['route'] ?? APP_DEFAULT_ROUTE;
         // get router
         $router = new Router();
+        var_dump($router->dump());
         // get current route's info
-        $route = $router->getRoute($currRoute);
+        if(!($route = $router->getRoute($currRoute))){
+            throw new FrontControllerException('Route not found');
+        }
         $controllerName = __NAMESPACE__.'\\'.$route->controller."Controller";
-        $methodName = $route->method."Action";
+        $methodName = $route->action."Action";
         // controle de l'existence de la route demandee
         if(!class_exists($controllerName)){
             throw new \Exception('wtf');
         }
         $controller = new $controllerName();
-        switch($currRoute){
-            case 'about':
-                $controller->aboutAction();
-                break;
-            default:
-                $controller->homeAction();
-                break;
-        }
-
+        $controller->$methodName();
     }
 }

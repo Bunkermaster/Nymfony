@@ -11,6 +11,7 @@ define('APP_DB_PASS','root');
 try{
     $pdo = new PDO('mysql:host='.APP_DB_HOST.';dbname='.APP_DB_NAME.';port='.APP_DB_PORT, APP_DB_USER, APP_DB_PASS);
 } catch(PDOException $p){
+    // @todo: add clean connection error page
     die($p->getMessage());
 }
 $pdo->query("SET NAMES 'utf8';");

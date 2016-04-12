@@ -2,11 +2,12 @@
   {
     "name":"home",
     "controller": "Page",
-    "method": "home"
+    "action": "home",
+    "method": "GET"
   },
   {
     "name":"about",
     "controller": "Page",
-    "method": "about"
+    "action": "about"
   }
 ]

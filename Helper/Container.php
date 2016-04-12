@@ -49,7 +49,7 @@ class Container
         // store service in Container's static collection
         // regiter service
         if(is_null($serviceName)){
-            self::$serviceCollection[get_class($serviceObject)] = $serviceObject;
+            self::$serviceCollection[str_replace('\\','',get_class($serviceObject))] = $serviceObject;
         } else {
             self::$serviceCollection[$serviceName] = $serviceObject;
         }
