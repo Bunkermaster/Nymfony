@@ -43,13 +43,16 @@ class Container
     public static function register($serviceObject, $serviceName = null)
     {
         // service has rto be an object, exception if nomt
-        if(!is_object($serviceObject)){
-            throw new \BadMethodCallException("Container Parameter was not an object");
+        if (!is_object($serviceObject)) {
+            throw new \BadMethodCallException(
+                "Container Parameter was not an object"
+            );
         }
         // store service in Container's static collection
         // regiter service
-        if(is_null($serviceName)){
-            self::$serviceCollection[get_class($serviceObject)] = $serviceObject;
+        if (is_null($serviceName)) {
+            $className = str_replace('\\', '', get_class($serviceObject));
+            self::$serviceCollection[$className] = $serviceObject;
         } else {
             self::$serviceCollection[$serviceName] = $serviceObject;
         }

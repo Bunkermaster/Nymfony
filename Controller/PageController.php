@@ -5,8 +5,8 @@ use Model\PageRepository;
 
 /**
  * Class PageController
- * @author Yann Le Scouarnec <yann.le-scouarnec@hetic.net>
  * @package Controller
+ * @author Yann Le Scouarnec <yann.le-scouarnec@hetic.net>
  */
 class PageController
 {
@@ -27,7 +27,7 @@ class PageController
      */
     public function homeAction()
     {
-        if(isset($_GET['prenom'])){
+        if (isset($_GET['prenom'])) {
             $prenom = $_GET['prenom'];
         } else {
             $prenom = "Yann";
@@ -43,5 +43,13 @@ class PageController
     public function aboutAction()
     {
         include APP_VIEW_DIR."about.php";
+    }
+
+    /**
+     *
+     */
+    public function homePostAction()
+    {
+        include APP_VIEW_DIR."ehmerde.php";
     }
 }

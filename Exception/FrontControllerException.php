@@ -2,11 +2,11 @@
 namespace Exception;
 
 /**
- * Class ContainerException
+ * Class FrontControllerException
  * @package Exception
  * @author Yann Le Scouarnec <yann.le-scouarnec@hetic.net>
  */
-class ContainerException extends \Exception
+class FrontControllerException extends \Exception
 {
 
 }

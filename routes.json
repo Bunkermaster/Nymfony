@@ -2,11 +2,18 @@
   {
     "name":"home",
     "controller": "Page",
-    "method": "home"
+    "action": "home",
+    "method": "GET"
+  },
+  {
+    "name":"home",
+    "controller": "Page",
+    "action": "homePost",
+    "method": "POST"
   },
   {
     "name":"about",
     "controller": "Page",
-    "method": "about"
+    "action": "about"
   }
 ]
