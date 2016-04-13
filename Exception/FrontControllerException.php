@@ -3,8 +3,8 @@ namespace Exception;
 
 /**
  * Class FrontControllerException
- * @author Yann Le Scouarnec <yann.le-scouarnec@hetic.net>
  * @package Exception
+ * @author Yann Le Scouarnec <yann.le-scouarnec@hetic.net>
  */
 class FrontControllerException extends \Exception
 {

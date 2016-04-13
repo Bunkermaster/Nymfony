@@ -1,16 +1,18 @@
 <?php
-define('APP_ROOT_DIR',__DIR__."/");
-define('APP_VIEW_DIR',APP_ROOT_DIR.'View/');
-define('APP_DEFAULT_ROUTE','home');
-define('APP_DB_HOST','localhost');
-define('APP_DB_PORT','3306');
-define('APP_DB_NAME','kandt');
-define('APP_DB_USER','root');
-define('APP_DB_PASS','root');
+define('APP_ROOT_DIR', __DIR__."/");
+define('APP_VIEW_DIR', APP_ROOT_DIR.'View/');
+define('APP_LOG_DIR', APP_ROOT_DIR.'logs/');
+define('APP_LOG_FILE', APP_LOG_DIR.'app.log');
+define('APP_DEFAULT_ROUTE', 'home');
+define('APP_DB_HOST', 'localhost');
+define('APP_DB_PORT', '3306');
+define('APP_DB_NAME', 'kandt');
+define('APP_DB_USER', 'root');
+define('APP_DB_PASS', 'root');
 
-try{
+try {
     $pdo = new PDO('mysql:host='.APP_DB_HOST.';dbname='.APP_DB_NAME.';port='.APP_DB_PORT, APP_DB_USER, APP_DB_PASS);
-} catch(PDOException $p){
+} catch (PDOException $p) {
     // @todo: add clean connection error page
     die($p->getMessage());
 }

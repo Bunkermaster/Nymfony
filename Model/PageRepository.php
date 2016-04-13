@@ -30,7 +30,7 @@ WHERE
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $data = [];
-        while($row = $stmt->fetchObject()){
+        while ($row = $stmt->fetchObject()) {
             $data[] = $row;
         }
         

@@ -1,11 +1,26 @@
 {
-    "name": "root/mvc-20160330-g1",
-    "require": {},
+    "name": "hetic/exercicemvc",
+    "description": "Petite demo de developpement MVC PHP",
+    "authors": [
+        {
+            "name": "Yann Le Scouarnec",
+            "email": "yann.le-scouarnec@hetic.net",
+            "role": "lead"
+        }
+    ],
+    "require": {
+        "psr/log": "^1.0",
+        "monolog/monolog": "^1.19"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8"
+    },
     "autoload": {
         "psr-4": {
             "Controller\\": "Controller/",
             "Helper\\": "Helper/",
             "Exception\\": "Exception/",
+            "Interface\\": "Interface/",
             "Model\\": "Model/"
         }
     }

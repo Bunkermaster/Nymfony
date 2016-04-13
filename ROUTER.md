@@ -14,3 +14,14 @@ Example: `home[GET]`
 If no HTTP verb is specified for a route, the string `ALL` will be used in the HTTP verb.
 Example: `home[ALL]`
 
+## Example
+``` json
+[  
+  {
+    "name":"home",
+    "controller": "Page",
+    "action": "homePost",
+    "method": "POST"
+  }
+]
+```
