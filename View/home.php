@@ -8,7 +8,7 @@
     <h1>HOOOOOME</h1>
 <p><?=$prenom?></p>
 <ul>
-    <?php foreach($pageList as $onePage):?>
+    <?php foreach ($pageList as $onePage) :?>
     <li><?=$onePage->h1?> <strong><?=$onePage->body?></strong></li>
     <?php endforeach;?>
 </ul>

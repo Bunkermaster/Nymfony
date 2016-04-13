@@ -32,6 +32,7 @@ abstract class Controller
         require APP_VIEW_DIR.$view;
         $ouput = ob_get_contents();
         ob_end_clean();
+        
         return $ouput;
     }
 }

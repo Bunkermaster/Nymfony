@@ -32,7 +32,7 @@ class PageController extends Controller
         } else {
             $prenom = "Yann";
         }
-        $repo = new PageRepository($this->pdo);
+        $repo = new PageRepository();
         $pageList = $repo->get();
         return $this->render(
             "home.php",
