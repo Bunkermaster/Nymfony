@@ -24,7 +24,7 @@ class FrontController
     {
         // init monolog object
         $logger = new Logger('App');
-        $logger->pushHandler(new StreamHandler(APP_LOG_FILE, Logger::WARNING));
+        $logger->pushHandler(new StreamHandler(APP_LOG_FILE, Logger::INFO));
         Container::register($logger, 'logger');
         // init request object
         $request = new Request();
@@ -52,21 +52,25 @@ class FrontController
         // controle de l'existence de la route demandee
         if (!class_exists($controllerName)) {
             $logger->addCritical(
-                'Controller class does not exist', 
+                'Controller class does not exist',
                 ['Missing class'=>$controllerName]
             );
             throw new FrontControllerException('Controller class does not exist');
         }
+        $logger->addInfo(
+            'App access',
+            ['Requested route'=>$reqRoute, 'Request IP' => $request->IP]
+        );
         $controller = new $controllerName();
         if (!method_exists($controller, $methodName)) {
             $logger->addCritical(
-                'Controller action method does not exist', 
+                'Controller action method does not exist',
                 ['Missing action method'=>$controllerName."::".$methodName]
             );
             throw new FrontControllerException(
                 'Controller action method does not exist'
             );
         }
-        $controller->$methodName();
+        echo $controller->$methodName();
     }
 }

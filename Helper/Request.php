@@ -35,6 +35,14 @@ class Request
      * @var array
      */
     public $COOKIE;
+    /**
+     * @var string
+     */
+    public $IP;
+    /**
+     * @var string
+     */
+    public $USER_AGENT;
 
     /**
      * Request constructor.
@@ -47,5 +55,7 @@ class Request
         $this->URI = $_SERVER['REQUEST_URI'];
         $this->HTTP = [];
         $this->HTTP['method'] = $_SERVER['REQUEST_METHOD'];
+        $this->IP = $_SERVER['REMOTE_ADDR'];
+        $this->USER_AGENT = $_SERVER['HTTP_USER_AGENT'];
     }
 }

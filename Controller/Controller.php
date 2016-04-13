@@ -24,7 +24,7 @@ abstract class Controller
      */
     protected function render($view, $data = [])
     {
-        if(!file_exists(APP_VIEW_DIR.$view)){
+        if (!file_exists(APP_VIEW_DIR.$view)) {
             throw new ViewNotFoundException('View '.$view.' not found.');
         }
         ob_start();
