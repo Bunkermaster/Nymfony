@@ -4,7 +4,7 @@ namespace Model;
 use Helper\Container;
 
 /**
- * Class Repository
+ * Repository Class
  * @author Yann Le Scouarnec <yann.le-scouarnec@hetic.net>
  * @package Model
  */
@@ -16,7 +16,7 @@ class Repository
     protected $pdo;
 
     /**
-     * Repository constructor.
+     * Repository constructor
      */
     public function __construct()
     {

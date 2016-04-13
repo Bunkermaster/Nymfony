@@ -38,7 +38,7 @@ class PageController
     }
 
     /**
-     *
+     * 
      */
     public function aboutAction()
     {
