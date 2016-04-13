@@ -24,15 +24,15 @@ class Request
      */
     public $URI;
     /**
-     * @var
+     * @var array
      */
     public $GET;
     /**
-     * @var
+     * @var array
      */
     public $POST;
     /**
-     * @var
+     * @var array
      */
     public $COOKIE;
 
