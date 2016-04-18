@@ -49,7 +49,14 @@ class FrontController extends Controller
         $router = new Router();
         // get current route's info
         if (!($route = $router->getRoute($currRoute))) {
+            // if the route is not found, 404 error
+            if (!isset($request->GET[APP_JSON_QUERY_STRING_FLAG])) {
+                $this->render('scafolding/header.php');
+            }
             $this->render('404.php', [], 404)->output();
+            if (!isset($request->GET[APP_JSON_QUERY_STRING_FLAG])) {
+                $this->render('scafolding/footer.php');
+            }
         }
         $controllerName = __NAMESPACE__.'\\'.$route->controller."Controller";
         $methodName = $route->action."Action";
