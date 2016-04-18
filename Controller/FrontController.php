@@ -75,11 +75,11 @@ class FrontController extends Controller
                 'Controller action method does not exist'
             );
         }
-        if (!isset($request->GET['raw'])) {
+        if (!isset($request->GET[APP_JSON_QUERY_STRING_FLAG])) {
             $this->render('scafolding/header.php');
         }
         $controller->$methodName();
-        if (!isset($request->GET['raw'])) {
+        if (!isset($request->GET[APP_JSON_QUERY_STRING_FLAG])) {
             $this->render('scafolding/footer.php');
         }
         $response->output();
