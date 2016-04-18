@@ -71,9 +71,13 @@ class Response
      * @param int $status
      * @param string|array $headers
      */
-    public function __construct($body, $status = null, $headers = null)
+    public function __construct($body = null, $status = null, $headers = null)
     {
-        $this->body = $body;
+        if (!is_null($body)) {
+            $this->addBody($body);
+        } else {
+            $this->addBody('');
+        }
         if (!is_null($headers)) {
             $this->addHeader($headers);
         }
@@ -85,8 +89,20 @@ class Response
     }
 
     /**
+     * @param $bodyPart
+     * @return $this
+     */
+    public function addBody($bodyPart)
+    {
+        $this->body .= $bodyPart;
+
+        return $this;
+    }
+
+    /**
      * Function to add a header to Response
      * @param string|array $header
+     * @return $this
      */
     public function addHeader($header)
     {
@@ -95,8 +111,25 @@ class Response
         } elseif (is_string($header)) {
             $this->headers[] = $header;
         }
+        
+        return $this;
     }
 
+    /**
+     * @param $status
+     * @return $this
+     */
+    public function setStatus($status)
+    {
+        if (isset($this->statusReference[$status])) {
+            $this->status = $status;
+        } else {
+            $this->status = $this->defaultStatus;
+        }
+        
+        return $this;
+    }
+    
     /**
      * output the HTTP response
      */
@@ -106,6 +139,6 @@ class Response
             header($header);
         }
         http_response_code($this->status);
-        print $this->body;
+        exit($this->body);
     }
 }

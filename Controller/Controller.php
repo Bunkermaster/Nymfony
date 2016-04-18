@@ -1,20 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: yann
- * Date: 03/04/16
- * Time: 15:00
- */
-
 namespace Controller;
 
 
 use Exception\ViewNotFoundException;
+use Helper\Container;
 use Helper\Response;
 
 /**
  * Class Controller
  * @package Controller
+ * @author Yann Le Scouarnec <yann.le-scouarnec@hetic.net>
  */
 abstract class Controller
 {
@@ -36,7 +31,11 @@ abstract class Controller
         require APP_VIEW_DIR.$view;
         $output = ob_get_contents();
         ob_end_clean();
-        
-        return new Response($output, $status, $headers);
+        /** @var Response $reponse */
+        $reponse = Container::getService('HelperResponse');
+
+        return $reponse->addBody($output)
+            ->setStatus($status)
+            ->addHeader($headers);
     }
 }

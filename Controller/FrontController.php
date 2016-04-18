@@ -27,9 +27,13 @@ class FrontController extends Controller
         $logger = new Logger('App');
         $logger->pushHandler(new StreamHandler(APP_LOG_FILE, Logger::INFO));
         Container::register($logger, 'logger');
-        // init request object
+        // init Request object
         $request = new Request();
         Container::register($request);
+        // init Response object
+        $response = new Response();
+        Container::register($response);
+//        var_dump(Container::getServiceCollection());die();
         // init router
         if (isset($_GET['route'])) {
             $currRoute = $_GET['route'];
@@ -46,9 +50,6 @@ class FrontController extends Controller
         // get current route's info
         if (!($route = $router->getRoute($currRoute))) {
             $this->render('404.php', [], 404)->output();
-            die();
-//            $logger->addCritical('Route not found', ['Requested route'=>$reqRoute]);
-//            throw new FrontControllerException('Route not found');
         }
         $controllerName = __NAMESPACE__.'\\'.$route->controller."Controller";
         $methodName = $route->action."Action";
