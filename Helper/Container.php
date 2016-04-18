@@ -30,8 +30,8 @@ class Container
      */
     public static function getService($serviceName)
     {
-        if(!isset(Container::$serviceCollection[$serviceName])){
-            throw new ContainerException();
+        if (!isset(Container::$serviceCollection[$serviceName])) {
+            throw new ContainerException($serviceName.' not found');
         }
         return self::$serviceCollection[$serviceName];
     }

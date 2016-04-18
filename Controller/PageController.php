@@ -8,13 +8,8 @@ use Model\PageRepository;
  * @package Controller
  * @author Yann Le Scouarnec <yann.le-scouarnec@hetic.net>
  */
-class PageController
+class PageController extends Controller
 {
-    /**
-     * @var \PDO
-     */
-    private $pdo;
-
     /**
      * PageController constructor.
      */
@@ -32,17 +27,23 @@ class PageController
         } else {
             $prenom = "Yann";
         }
-        $repo = new PageRepository($this->pdo);
+        $repo = new PageRepository();
         $pageList = $repo->get();
-        include APP_VIEW_DIR."home.php";
+        return $this->render(
+            "home.php",
+            [
+                'prenom' => $prenom,
+                'pageList' => $pageList
+            ]
+        );
     }
 
     /**
-     * 
+     *
      */
     public function aboutAction()
     {
-        include APP_VIEW_DIR."about.php";
+        return $this->render("about.php");
     }
 
     /**
@@ -50,6 +51,6 @@ class PageController
      */
     public function homePostAction()
     {
-        include APP_VIEW_DIR."ehmerde.php";
+        return $this->render("ehmerde.php");
     }
 }

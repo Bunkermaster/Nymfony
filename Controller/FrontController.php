@@ -5,6 +5,7 @@ namespace Controller;
 use Exception\FrontControllerException;
 use Helper\Container;
 use Helper\Request;
+use Helper\Response;
 use Helper\Router;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
@@ -14,7 +15,7 @@ use Monolog\Handler\StreamHandler;
  * @package Controller
  * @author Yann Le Scouarnec <yann.le-scouarnec@hetic.net>
  */
-class FrontController
+class FrontController extends Controller
 {
     /**
      * FrontController constructor.
@@ -24,11 +25,15 @@ class FrontController
     {
         // init monolog object
         $logger = new Logger('App');
-        $logger->pushHandler(new StreamHandler(APP_LOG_FILE, Logger::WARNING));
+        $logger->pushHandler(new StreamHandler(APP_LOG_FILE, Logger::INFO));
         Container::register($logger, 'logger');
-        // init request object
+        // init Request object
         $request = new Request();
         Container::register($request);
+        // init Response object
+        $response = new Response();
+        Container::register($response);
+//        var_dump(Container::getServiceCollection());die();
         // init router
         if (isset($_GET['route'])) {
             $currRoute = $_GET['route'];
@@ -44,29 +49,32 @@ class FrontController
         $router = new Router();
         // get current route's info
         if (!($route = $router->getRoute($currRoute))) {
-            $logger->addCritical('Route not found', ['Requested route'=>$reqRoute]);
-            throw new FrontControllerException('Route not found');
+            $this->render('404.php', [], 404)->output();
         }
         $controllerName = __NAMESPACE__.'\\'.$route->controller."Controller";
         $methodName = $route->action."Action";
         // controle de l'existence de la route demandee
         if (!class_exists($controllerName)) {
             $logger->addCritical(
-                'Controller class does not exist', 
+                'Controller class does not exist',
                 ['Missing class'=>$controllerName]
             );
             throw new FrontControllerException('Controller class does not exist');
         }
+        $logger->addInfo(
+            'App access',
+            ['Requested route'=>$reqRoute, 'Request IP' => $request->IP]
+        );
         $controller = new $controllerName();
         if (!method_exists($controller, $methodName)) {
             $logger->addCritical(
-                'Controller action method does not exist', 
+                'Controller action method does not exist',
                 ['Missing action method'=>$controllerName."::".$methodName]
             );
             throw new FrontControllerException(
                 'Controller action method does not exist'
             );
         }
-        $controller->$methodName();
+        $controller->$methodName()->output();
     }
 }
