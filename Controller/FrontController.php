@@ -5,6 +5,7 @@ namespace Controller;
 use Exception\FrontControllerException;
 use Helper\Container;
 use Helper\Request;
+use Helper\Response;
 use Helper\Router;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
@@ -14,7 +15,7 @@ use Monolog\Handler\StreamHandler;
  * @package Controller
  * @author Yann Le Scouarnec <yann.le-scouarnec@hetic.net>
  */
-class FrontController
+class FrontController extends Controller
 {
     /**
      * FrontController constructor.
@@ -44,8 +45,10 @@ class FrontController
         $router = new Router();
         // get current route's info
         if (!($route = $router->getRoute($currRoute))) {
-            $logger->addCritical('Route not found', ['Requested route'=>$reqRoute]);
-            throw new FrontControllerException('Route not found');
+            $this->render('404.php', [], 404)->output();
+            die();
+//            $logger->addCritical('Route not found', ['Requested route'=>$reqRoute]);
+//            throw new FrontControllerException('Route not found');
         }
         $controllerName = __NAMESPACE__.'\\'.$route->controller."Controller";
         $methodName = $route->action."Action";
@@ -71,6 +74,6 @@ class FrontController
                 'Controller action method does not exist'
             );
         }
-        echo $controller->$methodName();
+        $controller->$methodName()->output();
     }
 }

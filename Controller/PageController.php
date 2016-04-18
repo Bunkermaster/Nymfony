@@ -11,11 +11,6 @@ use Model\PageRepository;
 class PageController extends Controller
 {
     /**
-     * @var \PDO
-     */
-    private $pdo;
-
-    /**
      * PageController constructor.
      */
     public function __construct()

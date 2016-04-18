@@ -10,6 +10,7 @@ namespace Controller;
 
 
 use Exception\ViewNotFoundException;
+use Helper\Response;
 
 /**
  * Class Controller
@@ -20,9 +21,12 @@ abstract class Controller
     /**
      * @param $view
      * @param array $data
+     * @param int $status
+     * @param array $headers
      * @throws ViewNotFoundException
+     * @return Response
      */
-    protected function render($view, $data = [])
+    protected function render($view, $data = [], $status = null, $headers = null)
     {
         if (!file_exists(APP_VIEW_DIR.$view)) {
             throw new ViewNotFoundException('View '.$view.' not found.');
@@ -30,9 +34,9 @@ abstract class Controller
         ob_start();
         extract($data);
         require APP_VIEW_DIR.$view;
-        $ouput = ob_get_contents();
+        $output = ob_get_contents();
         ob_end_clean();
         
-        return $ouput;
+        return new Response($output, $status, $headers);
     }
 }
