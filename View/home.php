@@ -1,16 +1,13 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-</head>
-<body>
+<div class="jumbotron">
     <h1>HOOOOOME</h1>
-<p><?=$prenom?></p>
-<ul>
+</div>
+<div class="page-header">
+    <h2><?=$prenom?></h2>
+</div>
+<ul class="list-group">
     <?php foreach ($pageList as $onePage) :?>
-    <li><?=$onePage->h1?> <strong><?=$onePage->body?></strong></li>
+        <li class="list-group-item">
+            <?=$onePage->h1?> <strong><?=$onePage->body?></strong>
+        </li>
     <?php endforeach;?>
 </ul>
-</body>
-</html>

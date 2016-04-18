@@ -10,7 +10,8 @@
     ],
     "require": {
         "psr/log": "^1.0",
-        "monolog/monolog": "^1.19"
+        "monolog/monolog": "^1.19",
+        "twbs/bootstrap": "^3.3"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8"
@@ -23,5 +24,10 @@
             "Interface\\": "Interface/",
             "Model\\": "Model/"
         }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "Helper\\Install::postInstall"
+        ]
     }
 }

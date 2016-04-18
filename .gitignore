@@ -3,3 +3,4 @@ composer.phar
 vendor/
 logs/app.log
 .DS_Store
+Public/bootstrap

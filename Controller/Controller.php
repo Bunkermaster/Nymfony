@@ -26,11 +26,16 @@ abstract class Controller
         if (!file_exists(APP_VIEW_DIR.$view)) {
             throw new ViewNotFoundException('View '.$view.' not found.');
         }
-        ob_start();
-        extract($data);
-        require APP_VIEW_DIR.$view;
-        $output = ob_get_contents();
-        ob_end_clean();
+        $request = Container::getService('HelperRequest');
+        if (isset($request->GET[APP_JSON_QUERY_STRING_FLAG])) {
+            $output = json_encode($data);
+        } else {
+            ob_start();
+            extract($data);
+            require APP_VIEW_DIR.$view;
+            $output = ob_get_contents();
+            ob_end_clean();
+        }
         /** @var Response $reponse */
         $reponse = Container::getService('HelperResponse');
 
