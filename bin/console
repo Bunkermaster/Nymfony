@@ -9,5 +9,9 @@ $commands['config'] = 'Helper\\Majordomo::config';
 if (isset($commands[$argv[1]])) {
     call_user_func($commands[$argv[1]]);
 } else {
-    throw new \Exceptiom('Command not recognized', 1);
+    \Helper\ShellColor::mecho(PHP_EOL, 'green', 'black');
+    \Helper\ShellColor::mecho('[Available commands]'.PHP_EOL, 'green', 'black');
+    foreach ($commands as $command => $className) {
+        \Helper\ShellColor::mecho("    $command".PHP_EOL, 'green', 'black');
+    }
 }
