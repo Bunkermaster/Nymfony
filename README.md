@@ -9,7 +9,7 @@ Routes are declared in the `routes.json` file. See [Router info](./ROUTER.md)
 The service container is fairly easy to use. 
 To declare a service:
 ```
-$request = new Request();
+$request = new \Helper\Request();
 Container::register($request);
 ```
 To get a service:
