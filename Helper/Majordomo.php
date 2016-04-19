@@ -62,7 +62,7 @@ class Majordomo
     {
         $constants = get_defined_constants(true);
         foreach ($constants['user'] as $constantName => $constantValue) {
-            self::mecho($constantName . ' = ' . $constantValue . PHP_EOL);
+            self::mecho($constantName . ' = ' . $constantValue . PHP_EOL, 'white', 'red');
         }
     }
 }
