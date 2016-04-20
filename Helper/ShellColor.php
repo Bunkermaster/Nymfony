@@ -6,8 +6,15 @@ namespace Helper;
  * @package Helper
  * @author Yann Le Scouarnec <yann.le-scouarnec@hetic.net>
  */
+/**
+ * Class ShellColor
+ * @package Helper
+ */
 class ShellColor
 {
+    /**
+     * @var array list foreground colors
+     */
     public static $FGColors = [
         'black' => '0;30',
         'dark_gray' => '1;30',
@@ -26,6 +33,9 @@ class ShellColor
         'light_gray' => '0;37',
         'white' => '1;37'
     ];
+    /**
+     * @var array list background colors
+     */
     private static $BGColors = [
         'black' => '40',
         'red' => '41',
@@ -37,9 +47,20 @@ class ShellColor
         'light_gray' => '47'
     ];
 
+    /**
+     * @var string default foreground color
+     */
     private static $defaultFGColor = 'white';
+    /**
+     * @var string default background color
+     */
     private static $defaultBGColor = 'black';
 
+    /**
+     * @param $string
+     * @param null $FGColor
+     * @param null $BGColor
+     */
     public static function mecho($string, $FGColor = null, $BGColor = null)
     {
         $output = '';
@@ -57,6 +78,29 @@ class ShellColor
             $output .= "\033[0m";
         }
         echo $output;
+    }
+
+    /**
+     * @param $output
+     * @param null $FGColor
+     * @param null $BGColor
+     */
+    public static function commandOutput($output, $FGColor = null, $BGColor = null)
+    {
+        $outputArray = explode(PHP_EOL, $output);
+        $formatedOutput = PHP_EOL . PHP_EOL;
+        for ($i = 0; $i < count($outputArray); $i++) {
+            if (mb_strlen($outputArray[$i]) > 0) {
+                if ($i == 0) {
+                    $formatedOutput .= "  ";
+                } else {
+                    $formatedOutput .= "    ";
+                }
+                $formatedOutput .= $outputArray[$i] . PHP_EOL;
+            }
+        }
+        $formatedOutput .= PHP_EOL;
+        self::mecho($formatedOutput, $FGColor, $BGColor);
     }
 
 }

@@ -6,9 +6,13 @@ require_once 'vendor/autoload.php';
 require_once 'config.php';
 $commands = [];
 $commands['config'] = 'Helper\\Majordomo::config';
+$commands['router'] = 'Helper\\Majordomo::router';
+// check if requested command exists,
+// if not available, list commands
 if (isset($commands[$argv[1]])) {
     call_user_func($commands[$argv[1]]);
 } else {
+    // list all commands
     \Helper\ShellColor::mecho(PHP_EOL, 'green', 'black');
     \Helper\ShellColor::mecho('[Available commands]'.PHP_EOL, 'green', 'black');
     foreach ($commands as $command => $className) {
