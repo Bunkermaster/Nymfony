@@ -9,10 +9,6 @@ namespace Helper;
 class TableBuilder
 {
     /**
-     * @var array
-     */
-    private static $maxLength = [];
-    /**
      * String
      */
     const TABLE_CORNER = "+";
@@ -29,14 +25,13 @@ class TableBuilder
      * @param array $data
      * @param array $headers
      * @throws \Exception if $data is not an array
+     * @return string CLI table
      */
     public static function init($data, $headers = null)
     {
         if (!is_array($data)) {
             throw new \Exception('Oops, no data to build a table with :(');
         }
-        // get field count
-        $fieldCount = count(current($data));
         // get max length per field
         $maxLength = [];
         if (!is_null($headers) && is_array($headers)) {
@@ -75,13 +70,4 @@ class TableBuilder
         }
         return $output;
     }
-
-    /**
-     *
-     */
-    private static function drawLine()
-    {
-
-    }
-
 }
