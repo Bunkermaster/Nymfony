@@ -1,6 +1,5 @@
 #!/usr/bin/env php
 <?php
-var_dump($argv);
 chdir($rootDir =  dirname(__DIR__));
 require_once 'vendor/autoload.php';
 require_once 'config.php';

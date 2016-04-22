@@ -11,9 +11,13 @@ use Exception\RouterException;
 class Router
 {
     /**
-     * @var array
+     * @var array static
      */
-    private $routesCollection;
+    private static $routesCollection;
+    /**
+     * @var array static
+     */
+    private static $routesIdentifierCollection;
     /**
      * string
      */
@@ -22,20 +26,13 @@ class Router
      * string
      */
     const ROUTE_ALL_METHODS_PLACEHOLDER = 'ALL';
-    /**
-     * Router constructor.
-     */
-    public function __construct()
-    {
-        $this->init();
-    }
 
     /**
      * Initialize the router
      * @throws RouterException
      * @returns void
      */
-    private function init()
+    public static function init()
     {
         $routeFile = APP_ROOT_DIR.self::ROUTE_FILE;
         // controle de presence du fichier de routes
@@ -51,14 +48,16 @@ class Router
             throw new RouterException('Router file badly formated', 200);
         }
         // load list of routes
-        foreach ($routes as $route) {
+        foreach ($routes as $routeIdentifier => $route) {
             // build full internal route name
             if (isset($route->method)) {
                 $internalRouteMethod = $route->method;
             } else {
                 $internalRouteMethod = self::ROUTE_ALL_METHODS_PLACEHOLDER;
             }
-            $this->routesCollection[$route->name][$internalRouteMethod] = $route;
+            self::$routesCollection[$route->name][$internalRouteMethod] = $route;
+            self::$routesIdentifierCollection[$routeIdentifier] =
+                &self::$routesCollection[$route->name][$internalRouteMethod];
         }
     }
 
@@ -66,16 +65,16 @@ class Router
      * @param $name
      * @return bool
      */
-    public function getRoute($name)
+    public static function getRoute($name)
     {
         /** @var \Helper\Request $request */
         $request = Container::getService('HelperRequest');
-        if (isset($this->routesCollection[$name][$request->HTTP['method']])) {
+        if (isset(self::$routesCollection[$name][$request->HTTP['method']])) {
             
-            return $this->routesCollection[$name][$request->HTTP['method']];
-        } elseif (isset($this->routesCollection[$name][self::ROUTE_ALL_METHODS_PLACEHOLDER])) {
+            return self::$routesCollection[$name][$request->HTTP['method']];
+        } elseif (isset(self::$routesCollection[$name][self::ROUTE_ALL_METHODS_PLACEHOLDER])) {
             
-            return $this->routesCollection[$name][self::ROUTE_ALL_METHODS_PLACEHOLDER];
+            return self::$routesCollection[$name][self::ROUTE_ALL_METHODS_PLACEHOLDER];
         } else {
             
             return false;
@@ -83,16 +82,26 @@ class Router
     }
 
     /**
-     *
+     * dump all routes for debug
      */
-    public function dump()
+    public static function dump()
     {
-        if (count($this->routesCollection)==0) {
+        if (count(self::$routesCollection)==0) {
 
             return "No routes specified";
         } else {
-            
-            return var_export($this->routesCollection, true);
+            $output = [];
+            $i = 0;
+            foreach (self::$routesIdentifierCollection as $identifier => $route) {
+                $output[$i]['identifier'] = $route->name;
+                $output[$i]['name'] = $route->name;
+                $output[$i]['controller'] = $route->controller ?? 'N/A';
+                $output[$i]['action'] = $route->action ?? 'N/A';
+                $output[$i]['method'] = $route->method ?? 'N/A';
+                $i++;
+            }
+
+            return $output;
         }
     }
 }

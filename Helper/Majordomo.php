@@ -26,6 +26,13 @@ class Majordomo
      */
     public static function router()
     {
-        
+        $routerOutput = '[Router]' . PHP_EOL;
+        Router::init();
+        $routes = Router::dump();
+        $routerOutput .= TableBuilder::init(
+            $routes,
+            ['identifier', 'name', 'controller', 'action', 'method']
+        );
+        ShellColor::commandOutput($routerOutput.PHP_EOL, 'white', 'green');
     }
 }

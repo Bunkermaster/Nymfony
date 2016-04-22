@@ -45,10 +45,10 @@ class FrontController extends Controller
             $currRoute = APP_DEFAULT_ROUTE;
             $reqRoute = 'None';
         }
-        // get router
-        $router = new Router();
+        // init router
+        Router::init();
         // get current route's info
-        if (!($route = $router->getRoute($currRoute))) {
+        if (!($route = Router::getRoute($currRoute))) {
             // if the route is not found, 404 error
             if (!isset($request->GET[APP_JSON_QUERY_STRING_FLAG])) {
                 $this->render('scafolding/header.php');
