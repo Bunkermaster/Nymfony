@@ -1,3 +1,5 @@
+<?php /** @var \Model\Entity\Page $onePage */?>
+<?php /** @var array $pageList */?>
 <div class="jumbotron">
     <h1>HOOOOOME</h1>
 </div>
@@ -7,7 +9,7 @@
 <ul class="list-group">
     <?php foreach ($pageList as $onePage) :?>
         <li class="list-group-item">
-            <?=$onePage->h1?> <strong><?=$onePage->body?></strong>
+            <?=$onePage->getH1()?> <strong><?=$onePage->getBody()?></strong>
         </li>
     <?php endforeach;?>
 </ul>

@@ -1,19 +1,19 @@
-[
-  {
-    "name":"home",
+{
+  "page_home_get":{
+    "name": "home",
     "controller": "Page",
     "action": "home",
     "method": "GET"
   },
-  {
-    "name":"home",
-    "controller": "Page",
-    "action": "homePost",
-    "method": "POST"
+  "page_home_post":{
+  "name": "home",
+  "controller": "Page",
+  "action": "homePost",
+  "method": "POST"
   },
-  {
-    "name":"about",
-    "controller": "Page",
-    "action": "about"
+  "page_about":{
+  "name": "about",
+  "controller": "Page",
+  "action": "about"
   }
-]
+}
