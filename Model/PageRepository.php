@@ -8,6 +8,13 @@ namespace Model;
  */
 class PageRepository extends Repository
 {
+
+    /**
+     * Entity name
+     * @var string
+     */
+    protected $entity = 'Model\\Entity\\Page';
+
     /**
      * @return array
      */
@@ -30,7 +37,7 @@ WHERE
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $data = [];
-        while ($row = $stmt->fetchObject()) {
+        while ($row = $this->fetchObject($stmt)) {
             $data[] = $row;
         }
         
