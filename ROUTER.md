@@ -16,14 +16,14 @@ Example: `home[ALL]`
 
 ## Example
 ``` json
-[  
+{  
   "page_home_post":{
     "name":"home",
     "controller": "Page",
     "action": "homePost",
     "method": "POST"
   }
-]
+}
 ```
 
 ## Router dump
