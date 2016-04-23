@@ -25,6 +25,6 @@ Views are rendered from Controllers.
 return $this->render("somepage.php");
 ```
 
-# Helper\TableBuilder
+## Helper\TableBuilder
 
 See [Helper\TableBuilder info](./TABLEBUILDER.md)
