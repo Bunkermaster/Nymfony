@@ -28,7 +28,7 @@ Example: `home[ALL]`
 
 ## Router dump
 ```
-php bin/console router
+php bin/console debug router
 ```
 This command displays the folowing
 ```
