@@ -5,3 +5,4 @@ logs/app.log
 .DS_Store
 Public/bootstrap
 Public/jquery
+runtests.sh

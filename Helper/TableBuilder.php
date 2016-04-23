@@ -47,6 +47,8 @@ class TableBuilder
                     }
                     $i++;
                 }
+            } else {
+                throw new \Exception('Oops, no records to build a table with :(');
             }
         }
         // declare $output string
