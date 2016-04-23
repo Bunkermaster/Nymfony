@@ -17,11 +17,29 @@ Example: `home[ALL]`
 ## Example
 ``` json
 [  
-  {
+  "page_home_post":{
     "name":"home",
     "controller": "Page",
     "action": "homePost",
     "method": "POST"
   }
 ]
+```
+
+## Router dump
+```
+php bin/console router
+```
+This command displays the folowing
+```
+  [Router]
+    +-----------+------+-----------+---------+-------+
+    |identifier |name  |controller |action   |method |
+    +-----------+------+-----------+---------+-------+
+    |home       |home  |Page       |home     |GET    |
+    +-----------+------+-----------+---------+-------+
+    |home       |home  |Page       |homePost |POST   |
+    +-----------+------+-----------+---------+-------+
+    |about      |about |Page       |about    |N/A    |
+    +-----------+------+-----------+---------+-------+
 ```
