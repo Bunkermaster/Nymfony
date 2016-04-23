@@ -23,12 +23,39 @@ class TableBuilderTest extends \PHPUnit_Framework_TestCase
                         'a long string of weird text',
                         'str',
                         '',
-                    ]
+                    ],
                 ],
                 null,
                 '+----------------------------+----+-+'.PHP_EOL.
                 '|a long string of weird text |str | |'.PHP_EOL.
                 '+----------------------------+----+-+'.PHP_EOL
+                ,
+            ],
+            [
+                [
+                    [
+                        '1',
+                        '2',
+                        '3',
+                    ],
+                    [
+                        '4',
+                        '5',
+                        '6',
+                    ],
+                ],
+                [
+                    'One',
+                    'Two',
+                    'Three',
+                ],
+                '+----+----+------+'.PHP_EOL.
+                '|One |Two |Three |'.PHP_EOL.
+                '+----+----+------+'.PHP_EOL.
+                '|1   |2   |3     |'.PHP_EOL.
+                '+----+----+------+'.PHP_EOL.
+                '|4   |5   |6     |'.PHP_EOL.
+                '+----+----+------+'.PHP_EOL
                 ,
             ],
         ];
