@@ -44,6 +44,10 @@ define('APP_DB_PASS', 'root');
  */
 define('APP_JSON_QUERY_STRING_FLAG', 'json');
 
+if (version_compare(PHP_VERSION, '7.0.0') < 0) {
+    throw new \Exception('Please use PHP version 7.0.0 or above.');
+}
+
 try {
     $pdo = new PDO('mysql:host='.APP_DB_HOST.';dbname='.APP_DB_NAME.';port='.APP_DB_PORT, APP_DB_USER, APP_DB_PASS);
 } catch (PDOException $p) {

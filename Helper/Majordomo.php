@@ -9,7 +9,7 @@ namespace Helper;
 class Majordomo
 {
     /**
-     *
+     * Outputs current configuration
      */
     public static function config()
     {
@@ -22,10 +22,17 @@ class Majordomo
     }
 
     /**
-     *
+     * Outputs router debug information
      */
     public static function router()
     {
-        
+        $routerOutput = '[Router]' . PHP_EOL;
+        Router::init();
+        $routes = Router::dump();
+        $routerOutput .= TableBuilder::init(
+            $routes,
+            ['identifier', 'name', 'controller', 'action', 'method']
+        );
+        ShellColor::commandOutput($routerOutput.PHP_EOL, 'white', 'green');
     }
 }
