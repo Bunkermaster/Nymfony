@@ -9,7 +9,7 @@ namespace Helper;
 class Majordomo
 {
     /**
-     *
+     * Outputs current configuration
      */
     public static function config()
     {
@@ -22,7 +22,7 @@ class Majordomo
     }
 
     /**
-     *
+     * Outputs router debug information
      */
     public static function router()
     {
