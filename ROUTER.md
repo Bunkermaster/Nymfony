@@ -3,8 +3,8 @@
 Routes are defined in the `routes.json` file with the following attribute list:
 
 * name: feature name, will be the URI part of route name
-* controller: controller name (without Controller suffix)
-* action: action method name (without Action suffix)
+* controller: controller name (without Controller suffix, Page for PageController)
+* action: action method name (without Action suffix, home for HomeAction)
 * method: Optional, HTTP method, if not specified, route applies to all HTTP verbs
 
 ## Route name
@@ -40,6 +40,6 @@ This command displays the folowing
     +-----------+------+-----------+---------+-------+
     |home       |home  |Page       |homePost |POST   |
     +-----------+------+-----------+---------+-------+
-    |about      |about |Page       |about    |N/A    |
+    |about      |about |Page       |about    |ALL    |
     +-----------+------+-----------+---------+-------+
 ```

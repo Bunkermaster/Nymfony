@@ -97,7 +97,7 @@ class Router
                 $output[$i]['name'] = $route->name;
                 $output[$i]['controller'] = $route->controller ?? 'N/A';
                 $output[$i]['action'] = $route->action ?? 'N/A';
-                $output[$i]['method'] = $route->method ?? 'N/A';
+                $output[$i]['method'] = $route->method ?? 'ALL';
                 $i++;
             }
 
