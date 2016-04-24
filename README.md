@@ -29,6 +29,10 @@ Routes are declared in the `routes.json` file. See [Helper\Router info](./ROUTER
 
 See [Helper\CLITableBuilder info](./CLITABLEBUILDER.md)
 
+## Helper\CLIShellColor
+
+See [Helper\CLIShellColor info](./CLISHELLCOLOR.md)
+
 ## MIT License
 
 Copyright (c) 2016 Yann Le Scouarnec

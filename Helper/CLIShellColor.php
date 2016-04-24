@@ -2,17 +2,13 @@
 namespace Helper;
 
 /**
- * Class ShellColor
+ * Class CLIShellColor
  * Thanks you JR from www.if-not-true-then-false.com
  * He made a nice little article on coloring and I used his color array
  * @package Helper
  * @author Yann Le Scouarnec <yann.le-scouarnec@hetic.net>
  */
-/**
- * Class ShellColor
- * @package Helper
- */
-class ShellColor
+class CLIShellColor
 {
     /**
      * @var array list foreground colors
