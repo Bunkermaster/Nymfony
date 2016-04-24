@@ -14,9 +14,6 @@ To get a service:
 $request = Container::getService('HelperRequest');
 ```
 
-## Helper\Router
-Routes are declared in the `routes.json` file. See [Helper\Router info](./ROUTER.md)
-
 ## View
 Views are stored in the View/ directory.
 Views are rendered from Controllers.  
@@ -25,9 +22,12 @@ Views are rendered from Controllers.
 return $this->render("somepage.php");
 ```
 
+## Helper\Router
+Routes are declared in the `routes.json` file. See [Helper\Router info](./ROUTER.md)
+
 ## Helper\CLITableBuilder
 
-See [Helper\CLITableBuilder info](./TABLEBUILDER.md)
+See [Helper\CLITableBuilder info](./CLITABLEBUILDER.md)
 
 ## MIT License
 
