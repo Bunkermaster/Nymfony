@@ -18,7 +18,7 @@ class Majordomo
         foreach ($constants['user'] as $constantName => $constantValue) {
             $configOutput .= $constantName . ' = ' . $constantValue . PHP_EOL;
         }
-        ShellColor::commandOutput($configOutput.PHP_EOL, 'white', 'green');
+        CLIShellColor::commandOutput($configOutput.PHP_EOL, 'white', 'green');
     }
 
     /**
@@ -29,10 +29,10 @@ class Majordomo
         $routerOutput = '[Router]' . PHP_EOL;
         Router::init();
         $routes = Router::dump();
-        $routerOutput .= TableBuilder::init(
+        $routerOutput .= CLITableBuilder::init(
             $routes,
             ['identifier', 'name', 'controller', 'action', 'method']
         );
-        ShellColor::commandOutput($routerOutput.PHP_EOL, 'white', 'green');
+        CLIShellColor::commandOutput($routerOutput.PHP_EOL, 'white', 'green');
     }
 }

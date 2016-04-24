@@ -12,13 +12,13 @@ if (isset($argv[1]) && isset($argv[2]) && isset($commands[$argv[1]][$argv[2]])) 
     call_user_func($commands[$argv[1]][$argv[2]]);
 } else {
     // list all commands
-    \Helper\ShellColor::mecho(PHP_EOL, 'green', 'black');
-    \Helper\ShellColor::mecho('[Available commands]'.PHP_EOL, 'green', 'black');
+    \Helper\CLIShellColor::mecho(PHP_EOL, 'green', 'black');
+    \Helper\CLIShellColor::mecho('[Available commands]'.PHP_EOL, 'green', 'black');
     foreach ($commands as $groupeName => $CommandGroup) {
-        \Helper\ShellColor::mecho('  ['.$groupeName.']'.PHP_EOL, 'green', 'black');
+        \Helper\CLIShellColor::mecho('  ['.$groupeName.']'.PHP_EOL, 'green', 'black');
         foreach ($CommandGroup as $command => $className) {
-            \Helper\ShellColor::mecho("    $command".PHP_EOL, 'green', 'black');
+            \Helper\CLIShellColor::mecho("    $command".PHP_EOL, 'green', 'black');
         }
-        \Helper\ShellColor::mecho(PHP_EOL, 'green', 'black');
+        \Helper\CLIShellColor::mecho(PHP_EOL, 'green', 'black');
     }
 }

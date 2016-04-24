@@ -2,11 +2,11 @@
 namespace Helper;
 
 /**
- * Class TableBuilder
+ * Class CLITableBuilder
  * @package Helper
  * @author Yann Le Scouarnec <yann.le-scouarnec@hetic.net>
  */
-class TableBuilder
+class CLITableBuilder
 {
     /**
      * String
