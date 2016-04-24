@@ -70,7 +70,7 @@ class FrontController extends Controller
         }
         $logger->addInfo(
             'App access',
-            ['Requested route'=>$reqRoute, 'Request IP' => $request->IP]
+            ['Requested route'=>$route->routeIdentifier, 'Request IP' => $request->IP]
         );
         $controller = new $controllerName();
         if (!method_exists($controller, $methodName)) {

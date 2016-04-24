@@ -56,6 +56,7 @@ class Router
                 $internalRouteMethod = self::ROUTE_ALL_METHODS_PLACEHOLDER;
             }
             self::$routesCollection[$route->name][$internalRouteMethod] = $route;
+            self::$routesCollection[$route->name][$internalRouteMethod]->routeIdentifier = $routeIdentifier;
             self::$routesIdentifierCollection[$routeIdentifier] =
                 &self::$routesCollection[$route->name][$internalRouteMethod];
         }
@@ -93,7 +94,7 @@ class Router
             $output = [];
             $i = 0;
             foreach (self::$routesIdentifierCollection as $identifier => $route) {
-                $output[$i]['identifier'] = $route->name;
+                $output[$i]['identifier'] = $identifier;
                 $output[$i]['name'] = $route->name;
                 $output[$i]['controller'] = $route->controller ?? 'N/A';
                 $output[$i]['action'] = $route->action ?? 'N/A';
