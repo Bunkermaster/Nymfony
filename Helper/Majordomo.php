@@ -29,7 +29,7 @@ class Majordomo
         $routerOutput = '[Router]' . PHP_EOL;
         Router::init();
         $routes = Router::dump();
-        $routerOutput .= TableBuilder::init(
+        $routerOutput .= CLITableBuilder::init(
             $routes,
             ['identifier', 'name', 'controller', 'action', 'method']
         );

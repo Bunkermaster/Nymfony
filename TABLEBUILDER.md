@@ -1,5 +1,5 @@
-# TableBuilder
+# CLITableBuilder
 
 ``` php
-\Helper\TableBuilder::init(array $data)
+\Helper\CLITableBuilder::init(array $data)
 ```

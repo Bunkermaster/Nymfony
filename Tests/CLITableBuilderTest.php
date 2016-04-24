@@ -1,14 +1,14 @@
 <?php
 namespace Tests;
 
-use Helper\TableBuilder;
+use Helper\CLITableBuilder;
 
 /**
- * Class TableBuilderTest
+ * Class CLITableBuilderTest
  * @package Tests
  * @author Yann Le Scouarnec <yann.le-scouarnec@hetic.net>
  */
-class TableBuilderTest extends \PHPUnit_Framework_TestCase
+class CLITableBuilderTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -62,7 +62,7 @@ class TableBuilderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @test Helper\TableBuilder::init
+     * @test Helper\CLITableBuilder::init
      * @dataProvider tableBuilderProvider
      * @param array $data
      * @param null|array $headers
@@ -70,8 +70,8 @@ class TableBuilderTest extends \PHPUnit_Framework_TestCase
      */
     public function testInitMethod($data, $headers, $expected)
     {
-        // test the TableBuilder
-        $output = TableBuilder::init($data, $headers);
+        // test the CLITableBuilder
+        $output = CLITableBuilder::init($data, $headers);
         $this->assertEquals($output, $expected);
     }
 
@@ -82,7 +82,7 @@ class TableBuilderTest extends \PHPUnit_Framework_TestCase
     {
         // test the TableBuilder
         $this->setExpectedException('\Exception', 'Oops, no data to build a table with :(');
-        TableBuilder::init(null, null);
+        CLITableBuilder::init(null, null);
     }
 
     /**
@@ -92,6 +92,6 @@ class TableBuilderTest extends \PHPUnit_Framework_TestCase
     {
         // test the TableBuilder
         $this->setExpectedException('\Exception', 'Oops, no records to build a table with :(');
-        TableBuilder::init([null], null);
+        CLITableBuilder::init([null], null);
     }
 }

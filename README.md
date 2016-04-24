@@ -25,9 +25,9 @@ Views are rendered from Controllers.
 return $this->render("somepage.php");
 ```
 
-## Helper\TableBuilder
+## Helper\CLITableBuilder
 
-See [Helper\TableBuilder info](./TABLEBUILDER.md)
+See [Helper\CLITableBuilder info](./TABLEBUILDER.md)
 
 ## MIT License
 
