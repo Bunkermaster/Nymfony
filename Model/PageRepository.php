@@ -37,16 +37,9 @@ FROM
 WHERE 
   1
 ";
-//        $stmt = $this->pdo->prepare($sql);
-//        $stmt->execute();
         $entityManager = Container::getService('Doctrine');
         /** @var EntityManager $entityManager */
-        $entityManager->find('Page');
         $data = [];
-        while ($row = $this->fetchObject($stmt)) {
-            $data[] = $row;
-        }
-        
         return $data;
     }
 }

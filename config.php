@@ -53,13 +53,3 @@ if (version_compare(PHP_VERSION, '7.0.0') < 0) {
     require_once APP_VIEW_DIR.'scafolding/php-version-error.php';
     die();
 }
-
-//// connect to database via PDO
-//try {
-//    $pdo = new PDO('mysql:host='.APP_DB_HOST.';dbname='.APP_DB_NAME.';port='.APP_DB_PORT, APP_DB_USER, APP_DB_PASS);
-//} catch (PDOException $p) {
-//    // @todo: add clean connection error page
-//    die($p->getMessage());
-//}
-//$pdo->query("SET NAMES 'utf8';");
-//\Helper\Container::register($pdo);
