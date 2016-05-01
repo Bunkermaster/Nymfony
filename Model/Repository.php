@@ -21,16 +21,16 @@ class Repository
      */
     public function __construct()
     {
-        $this->pdo = Container::getService('PDO');
-        $repositoryReflection = new \ReflectionClass($this);
-        // check if repository has $entity property
-        try {
-            $repositoryReflection->getProperty('entity');
-        } catch (\ReflectionException $e) {
-            throw new RepositoryException(
-                'Please set Entity property name in Repository.'
-            );
-        }
+//        $this->pdo = Container::getService('PDO');
+//        $repositoryReflection = new \ReflectionClass($this);
+//        // check if repository has $entity property
+//        try {
+//            $repositoryReflection->getProperty('entity');
+//        } catch (\ReflectionException $e) {
+//            throw new RepositoryException(
+//                'Please set Entity property name in Repository.'
+//            );
+//        }
     }
 
     /**

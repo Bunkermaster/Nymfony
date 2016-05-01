@@ -69,7 +69,7 @@ class Router
     public static function getRoute($name)
     {
         /** @var \Helper\Request $request */
-        $request = Container::getService('HelperRequest');
+        $request = Container::getService('Request');
         if (isset(self::$routesCollection[$name][$request->HTTP['method']])) {
             
             return self::$routesCollection[$name][$request->HTTP['method']];

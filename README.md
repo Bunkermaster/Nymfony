@@ -7,11 +7,11 @@ The service container is fairly easy to use.
 To declare a service:
 ```
 $request = new \Helper\Request();
-Container::register($request);
+Container::register($request, 'Request');
 ```
 To get a service:
 ```
-$request = Container::getService('HelperRequest');
+$request = Container::getService('Request');
 ```
 
 ## View

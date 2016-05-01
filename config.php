@@ -20,25 +20,29 @@ define('APP_LOG_FILE', APP_LOG_DIR.'app.log');
  */
 define('APP_DEFAULT_ROUTE', 'home');
 /**
- * MySQL Host
+ * Database Host
  */
 define('APP_DB_HOST', 'localhost');
 /**
- * MySQL Port
+ * Database Port
  */
 define('APP_DB_PORT', '3306');
 /**
- * MySQL database name
+ * Database database name
  */
 define('APP_DB_NAME', 'kandt');
 /**
- * MySQL user name
+ * Database user name
  */
 define('APP_DB_USER', 'root');
 /**
- * MySQL user password
+ * Database user password
  */
 define('APP_DB_PASS', 'root');
+/**
+ * Database driver
+ */
+define('APP_DB_DRIVER', 'pdo_mysql');
 /**
  * JSON output query string flag
  */
@@ -50,12 +54,12 @@ if (version_compare(PHP_VERSION, '7.0.0') < 0) {
     die();
 }
 
-// connect to database via PDO
-try {
-    $pdo = new PDO('mysql:host='.APP_DB_HOST.';dbname='.APP_DB_NAME.';port='.APP_DB_PORT, APP_DB_USER, APP_DB_PASS);
-} catch (PDOException $p) {
-    // @todo: add clean connection error page
-    die($p->getMessage());
-}
-$pdo->query("SET NAMES 'utf8';");
-\Helper\Container::register($pdo);
+//// connect to database via PDO
+//try {
+//    $pdo = new PDO('mysql:host='.APP_DB_HOST.';dbname='.APP_DB_NAME.';port='.APP_DB_PORT, APP_DB_USER, APP_DB_PASS);
+//} catch (PDOException $p) {
+//    // @todo: add clean connection error page
+//    die($p->getMessage());
+//}
+//$pdo->query("SET NAMES 'utf8';");
+//\Helper\Container::register($pdo);

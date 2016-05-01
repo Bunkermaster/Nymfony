@@ -4,11 +4,11 @@ namespace Controller;
 
 use Exception\FrontControllerException;
 use Helper\Container;
+use Helper\Doctrine;
+use Helper\Monolog;
 use Helper\Request;
 use Helper\Response;
 use Helper\Router;
-use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
 
 /**
  * Class FrontController
@@ -23,16 +23,17 @@ class FrontController extends Controller
      */
     public function __construct()
     {
-        // init monolog object
-        $logger = new Logger('App');
-        $logger->pushHandler(new StreamHandler(APP_LOG_FILE, Logger::INFO));
-        Container::register($logger, 'logger');
-        // init Request object
-        $request = new Request();
-        Container::register($request);
-        // init Response object
-        $response = new Response();
-        Container::register($response);
+        // init Monolog service
+        Container::register(Monolog::init(), 'Logger');
+        $logger = Container::getService('Logger');
+        // init Request service
+        Container::register(new Request(), 'Request');
+        $request = Container::getService('Request');
+        // init Response service
+        Container::register(new Response(), 'Response');
+        $response = Container::getService('Response');
+        // init Doctrine service
+        Container::register(Doctrine::init(), 'Doctrine');
 //        var_dump(Container::getServiceCollection());die();
         // init router
         if (isset($_GET['route'])) {
