@@ -1,0 +1,16 @@
+{
+  "PDO":{
+    "class": "\\PDO",
+    "param":[
+      "mysql:host=localhost;dbname=kandt;port=3306",
+      "root",
+      "root"
+    ]
+  },
+  "Logger":{
+    "class":"Monolog\\Logger",
+    "param":[
+      "App"
+    ]
+  }
+}
