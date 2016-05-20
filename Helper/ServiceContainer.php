@@ -22,8 +22,11 @@ class ServiceContainer
      * @var array
      */
     private static $serviceCollection = [];
-    
-    const SERVICE_FILE = 'services.json';
+
+    /**
+     * Configuration file path
+     */
+    const SERVICE_FILE = APP_ROOT_DIR.'services.json';
 
     /**
      * Service Container retrieval method.
@@ -58,16 +61,18 @@ class ServiceContainer
         }
         return self::$serviceCollection[$service];
     }
-    
+
+    /**
+     * init initializes the ServiceContainer based on the /services.json file
+     * @throws ContainerException
+     */
     public static function init()
     {
         if (!file_exists(APP_ROOT_DIR.self::SERVICE_FILE)) {
-            // @todo change message...
-            throw new ContainerException('OH MY FUCKING GOD');
+            throw new ContainerException('ServiceContainer configuration file \'services.json\' doesn\'t exist');
         }
         if (!$services = json_decode(file_get_contents(APP_ROOT_DIR.self::SERVICE_FILE), true)) {
-            // @todo change message asshat...
-            throw new ContainerException('WHAT THE HELL!!!! FOAD');
+            throw new ContainerException('ServiceContainer configuration file \'services.json\' badly formated');
         }
         foreach ($services as $name => $serviceArray) {
             if (!isset($serviceArray['class'])) {
@@ -103,6 +108,7 @@ class ServiceContainer
     }
 
     /**
+     * getServiceCollection allows for Container dump for debugging
      * @return array
      */
     public static function getServiceCollection()
