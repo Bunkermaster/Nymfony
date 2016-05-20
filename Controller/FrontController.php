@@ -7,6 +7,7 @@ use Helper\Container;
 use Helper\Request;
 use Helper\Response;
 use Helper\Router;
+use Helper\ServiceContainer;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
@@ -24,15 +25,12 @@ class FrontController extends Controller
     public function __construct()
     {
         // init monolog object
-        $logger = new Logger('App');
+        $logger = ServiceContainer::getService('Logger');
         $logger->pushHandler(new StreamHandler(APP_LOG_FILE, Logger::INFO));
-        Container::register($logger, 'logger');
         // init Request object
-        $request = new Request();
-        Container::register($request);
+        $request = ServiceContainer::getService('Request');
         // init Response object
-        $response = new Response();
-        Container::register($response);
+        $response = ServiceContainer::getService('Response');
 //        var_dump(Container::getServiceCollection());die();
         // init router
         if (isset($_GET['route'])) {

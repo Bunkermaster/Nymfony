@@ -43,13 +43,17 @@ class ServiceContainer
                 // get class name
                 $name = $refClass->getShortName();
                 if (isset(self::$serviceCollection[$name])) {
-                    $name = $refClass->getName();
-                } elseif (isset(self::$serviceCollection[$name])) {
                     throw new ContainerException('Service name already taken ('.$service.')');
+                } elseif (isset(self::$serviceCollection[$name])) {
+                    $name = $refClass->getName();
                 }
+                var_dump($classParams);
                 self::$serviceCollection[$name] = self::instanciate($classParams);
             } else {
-                throw new ContainerException($service.' not found');
+                throw new ContainerException(
+                    $service.' not found (invoked from'.debug_backtrace()[0]['file'].
+                    ' line '.debug_backtrace()[0]['line'].')'
+                );
             }
         }
         return self::$serviceCollection[$service];

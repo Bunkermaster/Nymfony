@@ -1,7 +1,6 @@
 <?php
 namespace Helper;
 
-
 /**
  * Class Request
  * @package Helper
