@@ -47,12 +47,7 @@ define('APP_DB_DRIVER', 'pdo_mysql');
  * JSON output query string flag
  */
 define('APP_JSON_QUERY_STRING_FLAG', 'json');
-
-// check for PHP version 7 or above
-if (version_compare(PHP_VERSION, '7.0.0') < 0) {
-    require_once APP_VIEW_DIR.'scafolding/php-version-error.php';
-    die();
-}
-\Helper\ServiceContainer::init();
-$pdo = \Helper\ServiceContainer::getService('PDO');
-$pdo->query("SET NAMES 'utf8';");
+/**
+ * Dev mode
+ */
+define('APP_DEV_MODE', true);

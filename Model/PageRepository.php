@@ -37,8 +37,9 @@ FROM
 WHERE 
   1
 ";
-//        $entityManager = ServiceContainer::getService('Doctrine');
-        /** @var EntityManager $entityManager */
+        /** @var EntityManager $em */
+        $em = ServiceContainer::getService('EntityManager');
+//        $em->createQueryBuilder();
         $data = [];
         return $data;
     }

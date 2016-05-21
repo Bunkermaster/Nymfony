@@ -38,7 +38,7 @@ class ServiceContainer
      */
     public static function getService($service, $params = [])
     {
-        if (!isset(self::$serviceCollection[$service]) && !is_object($service)) {
+        if (!is_object($service) && !isset(self::$serviceCollection[$service])) {
             if (class_exists($service)) {
                 $classParams['class'] = $service;
                 $classParams['param'] = $params;
@@ -62,6 +62,7 @@ class ServiceContainer
                 throw new ContainerException('Service name already taken ('.$name.')');
             }
             self::$serviceCollection[$name] = $service;
+            $service = $name;
         }
         return self::$serviceCollection[$service];
     }
