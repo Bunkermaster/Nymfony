@@ -32,6 +32,9 @@
   "scripts": {
     "post-install-cmd": [
       "Helper\\Install::postInstall"
+    ],
+    "post-update-cmd": [
+      "Helper\\Install::postInstall"
     ]
   }
 }
