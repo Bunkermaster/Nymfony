@@ -1,7 +1,6 @@
 <?php
 namespace Helper;
 
-
 /**
  * Class Request
  * @package Helper
@@ -28,6 +27,10 @@ class Request
     /**
      * @var array
      */
+    public $SESSION;
+    /**
+     * @var array
+     */
     public $COOKIE;
     /**
      * @var string
@@ -45,6 +48,7 @@ class Request
     {
         $this->COOKIE = $_COOKIE;
         $this->GET = $_GET;
+        $this->SESSION = $_SESSION;
         $this->POST = $_POST;
         $this->URI = $_SERVER['REQUEST_URI'];
         $this->HTTP = [];

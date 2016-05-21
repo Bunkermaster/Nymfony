@@ -1,7 +1,6 @@
 <?php
 namespace Helper;
 
-
 /**
  * Class Response
  * @package Helper

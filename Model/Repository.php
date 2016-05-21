@@ -3,6 +3,7 @@ namespace Model;
 
 use Exception\RepositoryException;
 use Helper\Container;
+use Helper\ServiceContainer;
 
 /**
  * Repository Class
@@ -21,7 +22,7 @@ class Repository
      */
     public function __construct()
     {
-        $this->pdo = Container::getService('PDO');
+        $this->pdo = ServiceContainer::getService('PDO');
         $repositoryReflection = new \ReflectionClass($this);
         // check if repository has $entity property
         try {
