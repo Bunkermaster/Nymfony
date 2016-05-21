@@ -1,9 +1,8 @@
 <?php
-namespace Model;
+namespace Helper;
 
 use Doctrine\ORM\EntityManager;
 use Exception\RepositoryException;
-use Helper\ServiceContainer;
 
 /**
  * Repository Class

@@ -1,5 +1,6 @@
 <?php
 namespace Model;
+use Helper\Repository;
 
 /**
  * Class PageRepository

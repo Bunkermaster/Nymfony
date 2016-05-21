@@ -24,17 +24,26 @@ class CLITableBuilder
     /**
      * @param array $data
      * @param array $headers
+     * @param bool $separatorLines
+     * if true, every line is seperated from next
+     * if false, lines are not seperated
+     * @param bool|int $repeatHeader
+     * if false, never repeat header
+     * if true, repeat header every $repeatHeader lines
      * @throws \Exception if $data is not an array
      * @return string CLI table
      */
-    public static function init($data, $headers = null)
+    public static function init($data, $headers = null, $separatorLines = false, $repeatHeader = false)
     {
+        // first line deleimiting the header
+        $first = false;
         if (!is_array($data)) {
             throw new \Exception('Oops, no data to build a table with :(');
         }
         // get max length per field
         $maxLength = [];
         if (!is_null($headers) && is_array($headers)) {
+            $first = true;
             $data = array_merge([$headers], $data);
         }
         // build column max length array
@@ -61,14 +70,51 @@ class CLITableBuilder
         }
         $tableLine .= self::TABLE_CORNER . PHP_EOL;
         $output .= $tableLine;
+        /**
+         * @var int $countLines
+         * stores number of lines, starts at -1 to avoid counting header
+         * not used unless a header is displayed
+         */
+        $countLines = -1;
+        /**
+         * @var string $header stores header for repeated header feature
+         */
+        $header = '';
+        /**
+         * @var bool $second used to avoid repeating header after header itself
+         */
+        $second = false;
+        // generate lines
         foreach ($data as $record) {
+            if (is_int($repeatHeader) && ($countLines % $repeatHeader === 0) && $second !== true) {
+                $output .= $header;
+            }
             $output .= self::TABLE_VERTICAL_LINE;
             $column = 0;
+            // output fields
             foreach ($record as $field) {
                 $output .= str_pad($field, $maxLength[$column], ' ').self::TABLE_VERTICAL_LINE;
                 $column++;
             }
-            $output .= PHP_EOL . $tableLine;
+            $output .= PHP_EOL;
+            // output seperators
+            if ($separatorLines != false) {
+                $output .= $tableLine;
+            }
+            if ($second === true) {
+                $second = false;
+            }
+
+            if ($first === true) {
+                $first = false;
+                $output .= $tableLine;
+                $header = $output;
+                $second = true;
+            }
+            $countLines++;
+        }
+        if ($separatorLines == false) {
+            $output .= $tableLine;
         }
         return $output;
     }

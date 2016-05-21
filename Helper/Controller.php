@@ -1,6 +1,5 @@
 <?php
-namespace Controller;
-
+namespace Helper;
 
 use Exception\ViewNotFoundException;
 use Helper\Response;

@@ -2,6 +2,7 @@
 namespace Controller;
 
 use Model\PageRepository;
+use Helper\Controller;
 
 /**
  * Class PageController

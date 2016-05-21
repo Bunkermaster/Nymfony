@@ -46,15 +46,15 @@ class Request
      */
     public function __construct()
     {
-        $this->COOKIE = $_COOKIE;
-        $this->GET = $_GET;
+        $this->COOKIE = $_COOKIE ?? [];
+        $this->GET = $_GET ?? [];
         $this->SESSION = $_SESSION ?? [];
-        $this->POST = $_POST;
-        $this->URI = $_SERVER['REQUEST_URI'];
+        $this->POST = $_POST ?? [];
+        $this->URI = $_SERVER['REQUEST_URI'] ?? false;
         $this->HTTP = [];
         // reference OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT PATCH
-        $this->HTTP['method'] = $_SERVER['REQUEST_METHOD'];
-        $this->IP = $_SERVER['REMOTE_ADDR'];
-        $this->USER_AGENT = $_SERVER['HTTP_USER_AGENT'];
+        $this->HTTP['method'] = $_SERVER['REQUEST_METHOD'] ?? false;
+        $this->IP = $_SERVER['REMOTE_ADDR'] ?? false;
+        $this->USER_AGENT = $_SERVER['HTTP_USER_AGENT'] ?? false;
     }
 }
