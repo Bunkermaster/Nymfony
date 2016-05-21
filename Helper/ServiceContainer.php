@@ -65,10 +65,10 @@ class ServiceContainer
      */
     public static function init()
     {
-        if (!file_exists(APP_ROOT_DIR.self::SERVICE_FILE)) {
+        if (!file_exists(self::SERVICE_FILE)) {
             throw new ContainerException('ServiceContainer configuration file \'services.json\' doesn\'t exist');
         }
-        if (!$services = json_decode(file_get_contents(APP_ROOT_DIR.self::SERVICE_FILE), true)) {
+        if (!$services = json_decode(file_get_contents(self::SERVICE_FILE), true)) {
             throw new ContainerException('ServiceContainer configuration file \'services.json\' badly formated');
         }
         foreach ($services as $name => $serviceArray) {
