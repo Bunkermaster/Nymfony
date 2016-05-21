@@ -11,7 +11,6 @@ if (version_compare(PHP_VERSION, '7.0.0') < 0) {
 ServiceContainer::init();
 $pdo = \Helper\ServiceContainer::getService('PDO');
 $pdo->query("SET NAMES 'utf8';");
-
 $config = Setup::createAnnotationMetadataConfiguration(array(APP_ROOT_DIR."Model/Entity/"), APP_DEV_MODE);
 // database configuration parameters
 $conn = array(
@@ -21,6 +20,5 @@ $conn = array(
     'password' => APP_DB_PASS,
     'dbname'   => APP_DB_NAME,
 );
-
 $entityManager = EntityManager::create($conn, $config);
 ServiceContainer::getService($entityManager);

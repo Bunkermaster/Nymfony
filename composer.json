@@ -25,7 +25,8 @@
       "Helper\\": "Helper/",
       "Exception\\": "Exception/",
       "Interface\\": "Interface/",
-      "Model\\": "Model/"
+      "Model\\": "Model/",
+      "Model\\Entity\\": "Model/Entity/"
     }
   },
   "scripts": {

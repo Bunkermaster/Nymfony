@@ -1,45 +1,56 @@
 <?php
 namespace Model\Entity;
 
+use Doctrine\ORM;
+
 /**
  * Class Page
  * @package Model\Entity
  * @author Yann Le Scouarnec <yann.le-scouarnec@hetic.net>
- */
+ * @Entity @Table(name="page")
+ **/
 class Page
 {
 
     /**
+     * @Id @Column(type="integer") @GeneratedValue
      * @var int
      */
     private $id;
     /**
      * @var string
-     */
+     * @Column(type="string")
+     **/
     private $slug;
     /**
      * @var string
-     */
+     * @Column(type="string")
+     **/
     private $h1;
     /**
      * @var string
-     */
+     * @Column(type="string")
+     **/
     private $body;
     /**
      * @var string
-     */
+     * @Column(type="string")
+     **/
     private $title;
     /**
      * @var string
-     */
+     * @Column(type="string")
+     **/
     private $img;
     /**
      * @var string
-     */
+     * @Column(type="string")
+     **/
     private $span_text;
     /**
      * @var string
-     */
+     * @Column(type="string")
+     **/
     private $span_class;
 
     /**

@@ -23,24 +23,13 @@ class PageRepository extends Repository
      */
     public function get()
     {
-        $sql = "SELECT
-    `id`, 
-    `slug`, 
-    `h1`, 
-    `body`, 
-    `title`, 
-    `img`, 
-    `span_text`, 
-    `span_class` 
-FROM 
-  `page` 
-WHERE 
-  1
-";
         /** @var EntityManager $em */
         $em = ServiceContainer::getService('EntityManager');
-//        $em->createQueryBuilder();
-        $data = [];
-        return $data;
+        $qb = $em->createQueryBuilder();
+        $qb->add('select', 'p')
+            ->add('from', 'Model\Entity\Page p')
+            ->add('orderBy', 'p.title ASC');
+        $query = $qb->getQuery();
+        return $query->getResult();
     }
 }
