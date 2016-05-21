@@ -3,10 +3,8 @@
 namespace Controller;
 
 use Exception\FrontControllerException;
-use Helper\Container;
-use Helper\Request;
-use Helper\Response;
 use Helper\Router;
+use Helper\ServiceContainer;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
@@ -24,26 +22,19 @@ class FrontController extends Controller
     public function __construct()
     {
         // init monolog object
-        $logger = new Logger('App');
+        $logger = ServiceContainer::getService('Logger');
         $logger->pushHandler(new StreamHandler(APP_LOG_FILE, Logger::INFO));
-        Container::register($logger, 'logger');
         // init Request object
-        $request = new Request();
-        Container::register($request);
+        $request = ServiceContainer::getService('Request');
         // init Response object
-        $response = new Response();
-        Container::register($response);
-//        var_dump(Container::getServiceCollection());die();
+        $response = ServiceContainer::getService('Response');
         // init router
         if (isset($_GET['route'])) {
             $currRoute = $_GET['route'];
-            $reqRoute = $_GET['route'];
         } elseif (isset($_POST['route'])) {
             $currRoute = $_POST['route'];
-            $reqRoute = $_POST['route'];
         } else {
             $currRoute = APP_DEFAULT_ROUTE;
-            $reqRoute = 'None';
         }
         // init router
         Router::init();

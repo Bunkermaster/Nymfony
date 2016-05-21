@@ -1,4 +1,5 @@
 # Router
+
 ## Definition
 Routes are defined in the `routes.json` file with the following attribute list:
 
@@ -27,7 +28,7 @@ Example: `home[ALL]`
 ```
 
 ## Router dump
-```
+``` bash
 php bin/console debug router
 ```
 This command displays the folowing
