@@ -46,19 +46,11 @@ class Request
      */
     public function __construct()
     {
-<<<<<<< HEAD
         $this->COOKIE = $_COOKIE ?? [];
         $this->GET = $_GET ?? [];
         $this->SESSION = $_SESSION ?? [];
         $this->POST = $_POST ?? [];
         $this->URI = $_SERVER['REQUEST_URI'] ?? false;
-=======
-        $this->COOKIE = $_COOKIE;
-        $this->GET = $_GET;
-        $this->SESSION = $_SESSION ?? [];
-        $this->POST = $_POST;
-        $this->URI = $_SERVER['REQUEST_URI'];
->>>>>>> a3e66c70649e9529d64871a179dce9d0a4b6a220
         $this->HTTP = [];
         // reference OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT PATCH
         $this->HTTP['method'] = $_SERVER['REQUEST_METHOD'] ?? false;

@@ -3,10 +3,6 @@ namespace Helper;
 
 use Doctrine\ORM\EntityManager;
 use Exception\RepositoryException;
-<<<<<<< HEAD:Helper/Repository.php
-=======
-use Helper\ServiceContainer;
->>>>>>> a3e66c70649e9529d64871a179dce9d0a4b6a220:Model/Repository.php
 
 /**
  * Repository Class
