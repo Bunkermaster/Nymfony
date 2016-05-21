@@ -3,8 +3,8 @@ namespace Controller;
 
 
 use Exception\ViewNotFoundException;
-use Helper\Container;
 use Helper\Response;
+use Helper\ServiceContainer;
 
 /**
  * Class Controller
@@ -26,7 +26,7 @@ abstract class Controller
         if (!file_exists(APP_VIEW_DIR.$view)) {
             throw new ViewNotFoundException('View '.$view.' not found.');
         }
-        $request = Container::getService('Request');
+        $request = ServiceContainer::getService('Request');
         if (isset($request->GET[APP_JSON_QUERY_STRING_FLAG])) {
             $output = json_encode($data);
         } else {
@@ -37,7 +37,7 @@ abstract class Controller
             ob_end_clean();
         }
         /** @var Response $reponse */
-        $reponse = Container::getService('Response');
+        $reponse = ServiceContainer::getService('Response');
 
         return $reponse->addBody($output)
             ->setStatus($status)

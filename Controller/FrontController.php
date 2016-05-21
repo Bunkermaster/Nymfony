@@ -3,12 +3,10 @@
 namespace Controller;
 
 use Exception\FrontControllerException;
-use Helper\Container;
-use Helper\Doctrine;
-use Helper\Monolog;
-use Helper\Request;
-use Helper\Response;
 use Helper\Router;
+use Helper\ServiceContainer;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
 /**
  * Class FrontController
@@ -23,28 +21,20 @@ class FrontController extends Controller
      */
     public function __construct()
     {
-        // init Monolog service
-        Container::register(Monolog::init(), 'Logger');
-        $logger = Container::getService('Logger');
-        // init Request service
-        Container::register(new Request(), 'Request');
-        $request = Container::getService('Request');
-        // init Response service
-        Container::register(new Response(), 'Response');
-        $response = Container::getService('Response');
-        // init Doctrine service
-        Container::register(Doctrine::init(), 'Doctrine');
-//        var_dump(Container::getServiceCollection());die();
+        // init monolog object
+        $logger = ServiceContainer::getService('Logger');
+        $logger->pushHandler(new StreamHandler(APP_LOG_FILE, Logger::INFO));
+        // init Request object
+        $request = ServiceContainer::getService('Request');
+        // init Response object
+        $response = ServiceContainer::getService('Response');
         // init router
         if (isset($_GET['route'])) {
             $currRoute = $_GET['route'];
-            $reqRoute = $_GET['route'];
         } elseif (isset($_POST['route'])) {
             $currRoute = $_POST['route'];
-            $reqRoute = $_POST['route'];
         } else {
             $currRoute = APP_DEFAULT_ROUTE;
-            $reqRoute = 'None';
         }
         // init router
         Router::init();

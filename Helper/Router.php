@@ -64,12 +64,12 @@ class Router
 
     /**
      * @param $name
-     * @return bool
+     * @return object|bool
      */
     public static function getRoute($name)
     {
         /** @var \Helper\Request $request */
-        $request = Container::getService('Request');
+        $request = ServiceContainer::getService('Request');
         if (isset(self::$routesCollection[$name][$request->HTTP['method']])) {
             
             return self::$routesCollection[$name][$request->HTTP['method']];

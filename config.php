@@ -53,3 +53,6 @@ if (version_compare(PHP_VERSION, '7.0.0') < 0) {
     require_once APP_VIEW_DIR.'scafolding/php-version-error.php';
     die();
 }
+\Helper\ServiceContainer::init();
+$pdo = \Helper\ServiceContainer::getService('PDO');
+$pdo->query("SET NAMES 'utf8';");

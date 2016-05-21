@@ -1,6 +1,6 @@
 {
-  "name": "hetic/exercicemvc",
-  "description": "Petite demo de developpement MVC PHP",
+  "name": "hetic/nymfony",
+  "description": "Nymfony is not symfony ;)",
   "authors": [
     {
       "name": "Yann Le Scouarnec",
