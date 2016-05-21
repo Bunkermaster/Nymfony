@@ -1,8 +1,8 @@
 <?php
-
 namespace Controller;
 
 use Exception\FrontControllerException;
+use Helper\Controller;
 use Helper\Router;
 use Helper\ServiceContainer;
 use Monolog\Logger;

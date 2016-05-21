@@ -1,5 +1,6 @@
 <?php
 namespace Model;
+use Helper\Repository;
 
 /**
  * Class PageRepository
@@ -20,27 +21,11 @@ class PageRepository extends Repository
      */
     public function get()
     {
-        $sql = "SELECT
-    `id`, 
-    `slug`, 
-    `h1`, 
-    `body`, 
-    `title`, 
-    `img`, 
-    `span_text`, 
-    `span_class` 
-FROM 
-  `page` 
-WHERE 
-  1
-";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute();
-        $data = [];
-        while ($row = $this->fetchObject($stmt)) {
-            $data[] = $row;
-        }
-        
-        return $data;
+        $qb = $this->entityManager->createQueryBuilder();
+        $qb->add('select', 'p')
+            ->add('from', 'Model\Entity\Page p')
+            ->add('orderBy', 'p.title ASC');
+        $query = $qb->getQuery();
+        return $query->getResult();
     }
 }

@@ -1,53 +1,56 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: yann
- * Date: 22/04/16
- * Time: 15:48
- */
-
 namespace Model\Entity;
 
+use Doctrine\ORM;
 
 /**
  * Class Page
  * @package Model\Entity
  * @author Yann Le Scouarnec <yann.le-scouarnec@hetic.net>
- */
+ * @Entity @Table(name="page")
+ **/
 class Page
 {
 
     /**
+     * @Id @Column(type="integer") @GeneratedValue
      * @var int
      */
     private $id;
     /**
      * @var string
-     */
+     * @Column(type="string")
+     **/
     private $slug;
     /**
      * @var string
-     */
+     * @Column(type="string")
+     **/
     private $h1;
     /**
      * @var string
-     */
+     * @Column(type="string")
+     **/
     private $body;
     /**
      * @var string
-     */
+     * @Column(type="string")
+     **/
     private $title;
     /**
      * @var string
-     */
+     * @Column(type="string")
+     **/
     private $img;
     /**
      * @var string
-     */
+     * @Column(type="string")
+     **/
     private $span_text;
     /**
      * @var string
-     */
+     * @Column(type="string")
+     **/
     private $span_class;
 
     /**
@@ -60,10 +63,13 @@ class Page
 
     /**
      * @param mixed $id
+     * @return $this
      */
     public function setId($id)
     {
         $this->id = $id;
+
+        return $this;
     }
 
     /**
@@ -76,10 +82,13 @@ class Page
 
     /**
      * @param mixed $slug
+     * @return $this
      */
     public function setSlug($slug)
     {
         $this->slug = $slug;
+
+        return $this;
     }
 
     /**
@@ -92,10 +101,13 @@ class Page
 
     /**
      * @param mixed $h1
+     * @return $this
      */
     public function setH1($h1)
     {
         $this->h1 = $h1;
+
+        return $this;
     }
 
     /**
@@ -108,10 +120,13 @@ class Page
 
     /**
      * @param mixed $body
+     * @return $this
      */
     public function setBody($body)
     {
         $this->body = $body;
+
+        return $this;
     }
 
     /**
@@ -124,10 +139,13 @@ class Page
 
     /**
      * @param mixed $title
+     * @return $this
      */
     public function setTitle($title)
     {
         $this->title = $title;
+
+        return $this;
     }
 
     /**
@@ -140,10 +158,13 @@ class Page
 
     /**
      * @param mixed $img
+     * @return $this
      */
     public function setImg($img)
     {
         $this->img = $img;
+
+        return $this;
     }
 
     /**
@@ -156,10 +177,13 @@ class Page
 
     /**
      * @param mixed $span_text
+     * @return $this
      */
     public function setSpanText($span_text)
     {
         $this->span_text = $span_text;
+
+        return $this;
     }
 
     /**
@@ -172,11 +196,12 @@ class Page
 
     /**
      * @param mixed $span_class
+     * @return $this
      */
     public function setSpanClass($span_class)
     {
         $this->span_class = $span_class;
+
+        return $this;
     }
-
-
 }

@@ -1,9 +1,7 @@
 <?php
-namespace Controller;
-
+namespace Helper;
 
 use Exception\ViewNotFoundException;
-use Helper\Container;
 use Helper\Response;
 use Helper\ServiceContainer;
 

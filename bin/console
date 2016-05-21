@@ -4,8 +4,10 @@ chdir($rootDir =  dirname(__DIR__));
 require_once 'vendor/autoload.php';
 require_once 'config.php';
 $commands = [];
+$commands['debug']['container'] = 'Helper\\Majordomo::container';
 $commands['debug']['config'] = 'Helper\\Majordomo::config';
 $commands['debug']['router'] = 'Helper\\Majordomo::router';
+$commands['server']['run'] = 'Helper\\Server::run';
 // check if requested command exists,
 // if not available, list commands
 if (isset($argv[1]) && isset($argv[2]) && isset($commands[$argv[1]][$argv[2]])) {

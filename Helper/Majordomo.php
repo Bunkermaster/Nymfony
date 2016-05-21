@@ -31,8 +31,34 @@ class Majordomo
         $routes = Router::dump();
         $routerOutput .= CLITableBuilder::init(
             $routes,
-            ['identifier', 'name', 'controller', 'action', 'method']
+            ['identifier', 'name', 'controller', 'action', 'method'],
+            false,
+            10
         );
         CLIShellColor::commandOutput($routerOutput.PHP_EOL, 'white', 'green');
+    }
+
+    /**
+     * Outputs container debug information
+     */
+    public static function container()
+    {
+        $containerOutput = '[ServiceContainer]' . PHP_EOL;
+        ServiceContainer::init();
+        $services = ServiceContainer::getServiceCollection();
+        $serviceDebug = [];
+        foreach ($services as $name => $service) {
+            $serviceDebug[] = [
+                'name' => $name,
+                'class' => get_class($service),
+            ];
+        }
+        $containerOutput .= CLITableBuilder::init(
+            $serviceDebug,
+            ['Name', 'Class'],
+            false,
+            10
+        );
+        CLIShellColor::commandOutput($containerOutput.PHP_EOL, 'white', 'green');
     }
 }

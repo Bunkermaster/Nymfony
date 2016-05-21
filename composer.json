@@ -13,7 +13,8 @@
     "psr/log": "^1.0",
     "monolog/monolog": "^1.19",
     "twbs/bootstrap": "^3.3",
-    "components/jquery": "^2.2"
+    "components/jquery": "^2.2",
+    "doctrine/orm": "^2.5"
   },
   "require-dev": {
     "phpunit/phpunit": "^5.3"
@@ -24,7 +25,8 @@
       "Helper\\": "Helper/",
       "Exception\\": "Exception/",
       "Interface\\": "Interface/",
-      "Model\\": "Model/"
+      "Model\\": "Model/",
+      "Model\\Entity\\": "Model/Entity/"
     }
   },
   "scripts": {

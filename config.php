@@ -20,35 +20,34 @@ define('APP_LOG_FILE', APP_LOG_DIR.'app.log');
  */
 define('APP_DEFAULT_ROUTE', 'home');
 /**
- * MySQL Host
+ * Database Host
  */
 define('APP_DB_HOST', 'localhost');
 /**
- * MySQL Port
+ * Database Port
  */
 define('APP_DB_PORT', '3306');
 /**
- * MySQL database name
+ * Database database name
  */
 define('APP_DB_NAME', 'kandt');
 /**
- * MySQL user name
+ * Database user name
  */
 define('APP_DB_USER', 'root');
 /**
- * MySQL user password
+ * Database user password
  */
 define('APP_DB_PASS', 'root');
+/**
+ * Database driver
+ */
+define('APP_DB_DRIVER', 'pdo_mysql');
 /**
  * JSON output query string flag
  */
 define('APP_JSON_QUERY_STRING_FLAG', 'json');
-
-// check for PHP version 7 or above
-if (version_compare(PHP_VERSION, '7.0.0') < 0) {
-    require_once APP_VIEW_DIR.'scafolding/php-version-error.php';
-    die();
-}
-\Helper\ServiceContainer::init();
-$pdo = \Helper\ServiceContainer::getService('PDO');
-$pdo->query("SET NAMES 'utf8';");
+/**
+ * Dev mode
+ */
+define('APP_DEV_MODE', true);
