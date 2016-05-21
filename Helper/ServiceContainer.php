@@ -47,10 +47,7 @@ class ServiceContainer
                 $name = $refClass->getShortName();
                 if (isset(self::$serviceCollection[$name])) {
                     throw new ContainerException('Service name already taken ('.$service.')');
-                } elseif (isset(self::$serviceCollection[$name])) {
-                    $name = $refClass->getName();
                 }
-                var_dump($classParams);
                 self::$serviceCollection[$name] = self::instanciate($classParams);
             } else {
                 throw new ContainerException(
@@ -99,6 +96,8 @@ class ServiceContainer
                 $paramValues[$paramCount] = $serviceArray['param'][$paramCount];
             } elseif (!$reflectParam->isOptional() && $reflectParam->isDefaultValueAvailable()) {
                 $paramValues[$paramCount] = $reflectParam->getDefaultValue();
+            } else {
+                // @todo handle the case where no param was given for a parma missing default value
             }
             $paramCount++;
         }

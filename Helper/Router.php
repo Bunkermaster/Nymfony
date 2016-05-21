@@ -64,7 +64,7 @@ class Router
 
     /**
      * @param $name
-     * @return bool
+     * @return object|bool
      */
     public static function getRoute($name)
     {

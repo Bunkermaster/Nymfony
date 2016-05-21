@@ -3,9 +3,6 @@
 namespace Controller;
 
 use Exception\FrontControllerException;
-use Helper\Container;
-use Helper\Request;
-use Helper\Response;
 use Helper\Router;
 use Helper\ServiceContainer;
 use Monolog\Logger;
@@ -31,17 +28,13 @@ class FrontController extends Controller
         $request = ServiceContainer::getService('Request');
         // init Response object
         $response = ServiceContainer::getService('Response');
-//        var_dump(Container::getServiceCollection());die();
         // init router
         if (isset($_GET['route'])) {
             $currRoute = $_GET['route'];
-            $reqRoute = $_GET['route'];
         } elseif (isset($_POST['route'])) {
             $currRoute = $_POST['route'];
-            $reqRoute = $_POST['route'];
         } else {
             $currRoute = APP_DEFAULT_ROUTE;
-            $reqRoute = 'None';
         }
         // init router
         Router::init();
