@@ -48,7 +48,7 @@ class Request
     {
         $this->COOKIE = $_COOKIE;
         $this->GET = $_GET;
-        $this->SESSION = $_SESSION;
+        $this->SESSION = $_SESSION ?? [];
         $this->POST = $_POST;
         $this->URI = $_SERVER['REQUEST_URI'];
         $this->HTTP = [];
