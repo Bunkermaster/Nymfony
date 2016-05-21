@@ -31,14 +31,14 @@ class ServiceContainer
     /**
      * Service Container retrieval method.
      * Can be used to add a new service.
-     * @param string $service
+     * @param string|object $service
      * @param array $params optional service __construct parameters
      * @return mixed
      * @throws ContainerException
      */
     public static function getService($service, $params = [])
     {
-        if (!isset(self::$serviceCollection[$service])) {
+        if (!isset(self::$serviceCollection[$service]) && !is_object($service)) {
             if (class_exists($service)) {
                 $classParams['class'] = $service;
                 $classParams['param'] = $params;
@@ -55,6 +55,13 @@ class ServiceContainer
                     ' line '.debug_backtrace()[0]['line'].')'
                 );
             }
+        } elseif (is_object($service)) {
+            $servicereflection = new \ReflectionClass(get_class($service));
+            $name = $servicereflection->getShortName();
+            if (isset(self::$serviceCollection[$name])) {
+                throw new ContainerException('Service name already taken ('.$name.')');
+            }
+            self::$serviceCollection[$name] = $service;
         }
         return self::$serviceCollection[$service];
     }
@@ -65,10 +72,10 @@ class ServiceContainer
      */
     public static function init()
     {
-        if (!file_exists(APP_ROOT_DIR.self::SERVICE_FILE)) {
+        if (!file_exists(self::SERVICE_FILE)) {
             throw new ContainerException('ServiceContainer configuration file \'services.json\' doesn\'t exist');
         }
-        if (!$services = json_decode(file_get_contents(APP_ROOT_DIR.self::SERVICE_FILE), true)) {
+        if (!$services = json_decode(file_get_contents(self::SERVICE_FILE), true)) {
             throw new ContainerException('ServiceContainer configuration file \'services.json\' badly formated');
         }
         foreach ($services as $name => $serviceArray) {

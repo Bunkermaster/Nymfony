@@ -2,7 +2,7 @@
 namespace Model;
 
 use Doctrine\ORM\EntityManager;
-use Helper\Container;
+use Helper\ServiceContainer;
 
 /**
  * Class PageRepository
@@ -37,7 +37,7 @@ FROM
 WHERE 
   1
 ";
-        $entityManager = Container::getService('Doctrine');
+//        $entityManager = ServiceContainer::getService('Doctrine');
         /** @var EntityManager $entityManager */
         $data = [];
         return $data;

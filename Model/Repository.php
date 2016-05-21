@@ -2,7 +2,7 @@
 namespace Model;
 
 use Exception\RepositoryException;
-use Helper\Container;
+use Helper\ServiceContainer;
 
 /**
  * Repository Class
