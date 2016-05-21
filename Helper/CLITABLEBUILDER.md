@@ -1,8 +1,12 @@
 # CLITableBuilder
 
 ``` php
-\Helper\CLITableBuilder::init(array $data, array $headers) : String
+\Helper\CLITableBuilder::init(array $data, array $headers, $separatorLines = false, $repeatHeader = false) : String
 ```
+
+* bool $separatorLines specifies if there will be seperator lines between data lines. ```false``` by default.
+Note: Header will always be seperated from the data lines by a seperator line 
+* bool|int $repeatHeader will decide if the header is repeated every int $repeatHeader lines. ```false``` by default.
 
 ## Input
 Method takes an array as parametre.
