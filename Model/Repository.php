@@ -1,6 +1,7 @@
 <?php
 namespace Model;
 
+use Doctrine\ORM\EntityManager;
 use Exception\RepositoryException;
 use Helper\ServiceContainer;
 
@@ -9,12 +10,16 @@ use Helper\ServiceContainer;
  * @author Yann Le Scouarnec <yann.le-scouarnec@hetic.net>
  * @package Model
  */
-class Repository
+abstract class Repository
 {
     /**
      * @var \PDO
      */
     protected $pdo;
+    /**
+     * @var EntityManager
+     */
+    protected $entityManager;
 
     /**
      * Repository constructor
@@ -23,6 +28,7 @@ class Repository
     {
         $this->pdo = ServiceContainer::getService('PDO');
         $repositoryReflection = new \ReflectionClass($this);
+        $this->entityManager = ServiceContainer::getService('EntityManager');
         // check if repository has $entity property
         try {
             $repositoryReflection->getProperty('entity');
@@ -31,20 +37,5 @@ class Repository
                 'Please set Entity property name in Repository.'
             );
         }
-    }
-
-    /**
-     * @param \PDOStatement $statement
-     * @return mixed
-     */
-    protected function fetchObject(\PDOStatement $statement)
-    {
-        $entityReflection = new \ReflectionClass("\\Model\\Entity\\Page");
-        $entityProperties = $entityReflection->getProperties();
-        $fields = [];
-        foreach ($entityProperties as $property) {
-            $fields[] = $property->getName();
-        }
-        return $statement->fetchObject($this->entity);
     }
 }

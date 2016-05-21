@@ -1,9 +1,6 @@
 <?php
 namespace Model;
 
-use Doctrine\ORM\EntityManager;
-use Helper\ServiceContainer;
-
 /**
  * Class PageRepository
  * @author Yann Le Scouarnec <yann.le-scouarnec@hetic.net>
@@ -23,9 +20,7 @@ class PageRepository extends Repository
      */
     public function get()
     {
-        /** @var EntityManager $em */
-        $em = ServiceContainer::getService('EntityManager');
-        $qb = $em->createQueryBuilder();
+        $qb = $this->entityManager->createQueryBuilder();
         $qb->add('select', 'p')
             ->add('from', 'Model\Entity\Page p')
             ->add('orderBy', 'p.title ASC');
