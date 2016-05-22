@@ -21,7 +21,7 @@ class FrontController extends Controller
      */
     public function __construct()
     {
-        // init monolog object
+        // get logger 
         $logger = ServiceContainer::getService('Logger');
         $logger->pushHandler(new StreamHandler(APP_LOG_FILE, Logger::INFO));
         // init Request object

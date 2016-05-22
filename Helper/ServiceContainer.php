@@ -83,7 +83,11 @@ class ServiceContainer
             if (!isset($serviceArray['class'])) {
                 continue;
             }
-            self::$serviceCollection[$name] = self::instanciate($serviceArray);
+            $devMode = $serviceArray['devmode'] ?? false;
+            // instanciate only "devmode" => true services when in APP_DEV_MODE true
+            if ((APP_DEV_MODE === false && $devMode === false) || APP_DEV_MODE === true ) {
+                self::$serviceCollection[$name] = self::instanciate($serviceArray);
+            }
         }
     }
 
