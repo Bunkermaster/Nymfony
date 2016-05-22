@@ -3,6 +3,7 @@ namespace Controller;
 
 use Exception\FrontControllerException;
 use Helper\Controller;
+use Helper\Profiler;
 use Helper\Router;
 use Helper\ServiceContainer;
 use Monolog\Logger;
@@ -26,7 +27,7 @@ class FrontController extends Controller
         $logger->pushHandler(new StreamHandler(APP_LOG_FILE, Logger::INFO));
         if (APP_DEV_MODE === true) {
             $devLogger = ServiceContainer::getService('DevLogger');
-            $devLogger->pushHandler(new StreamHandler(APP_LOG_FILE, Logger::INFO));
+            $devLogger->pushHandler(new StreamHandler(APP_DEV_LOG_FILE, Logger::INFO));
         }
         // init Request object
         $request = ServiceContainer::getService('Request');
@@ -42,48 +43,55 @@ class FrontController extends Controller
         }
         // init router
         Router::init();
+        if (APP_DEV_MODE === true) {
+            Profiler::setRoute($currRoute);
+        }
         // get current route's info
         if (!($route = Router::getRoute($currRoute))) {
             // if the route is not found, 404 error
+            $this->render('scafolding/header.php');
+            $this->render('404.php', [], 404);
+            $this->render('scafolding/footer.php');
+            $response->output();
+        } else {
+            if (APP_DEV_MODE === true) {
+                Profiler::setRoute(var_export($route, true));
+            }
+            $controllerName = __NAMESPACE__.'\\'.$route->controller."Controller";
+            $methodName = $route->action."Action";
+            // check for requested route existance
+            if (!class_exists($controllerName)) {
+                $logger->addCritical(
+                    'Controller class does not exist',
+                    ['Missing class' => $controllerName]
+                );
+                throw new FrontControllerException('Controller class does not exist');
+            }
+            $logger->addInfo(
+                'App access',
+                ['Requested route' => $route->routeIdentifier, 'Request IP' => $request->IP]
+            );
+            $controller = new $controllerName();
+            if (!method_exists($controller, $methodName)) {
+                $logger->addCritical(
+                    'Controller action method does not exist',
+                    ['Missing action method' => $controllerName."::".$methodName]
+                );
+                throw new FrontControllerException(
+                    'Controller action method does not exist'
+                );
+            }
             if (!isset($request->GET[APP_JSON_QUERY_STRING_FLAG])) {
                 $this->render('scafolding/header.php');
             }
-            $this->render('404.php', [], 404)->output();
+            $controller->$methodName();
             if (!isset($request->GET[APP_JSON_QUERY_STRING_FLAG])) {
                 $this->render('scafolding/footer.php');
             }
+            if (APP_DEV_MODE === true) {
+                Profiler::setMemory(memory_get_usage());
+            }
+            $response->output();
         }
-        $controllerName = __NAMESPACE__.'\\'.$route->controller."Controller";
-        $methodName = $route->action."Action";
-        // controle de l'existence de la route demandee
-        if (!class_exists($controllerName)) {
-            $logger->addCritical(
-                'Controller class does not exist',
-                ['Missing class'=>$controllerName]
-            );
-            throw new FrontControllerException('Controller class does not exist');
-        }
-        $logger->addInfo(
-            'App access',
-            ['Requested route'=>$route->routeIdentifier, 'Request IP' => $request->IP]
-        );
-        $controller = new $controllerName();
-        if (!method_exists($controller, $methodName)) {
-            $logger->addCritical(
-                'Controller action method does not exist',
-                ['Missing action method'=>$controllerName."::".$methodName]
-            );
-            throw new FrontControllerException(
-                'Controller action method does not exist'
-            );
-        }
-        if (!isset($request->GET[APP_JSON_QUERY_STRING_FLAG])) {
-            $this->render('scafolding/header.php');
-        }
-        $controller->$methodName();
-        if (!isset($request->GET[APP_JSON_QUERY_STRING_FLAG])) {
-            $this->render('scafolding/footer.php');
-        }
-        $response->output();
     }
 }
