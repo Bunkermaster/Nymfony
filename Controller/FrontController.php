@@ -24,6 +24,10 @@ class FrontController extends Controller
         // get logger 
         $logger = ServiceContainer::getService('Logger');
         $logger->pushHandler(new StreamHandler(APP_LOG_FILE, Logger::INFO));
+        if (APP_DEV_MODE === true) {
+            $devLogger = ServiceContainer::getService('DevLogger');
+            $devLogger->pushHandler(new StreamHandler(APP_LOG_FILE, Logger::INFO));
+        }
         // init Request object
         $request = ServiceContainer::getService('Request');
         // init Response object

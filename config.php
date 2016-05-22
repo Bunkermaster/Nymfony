@@ -26,6 +26,11 @@ define('APP_LOG_DIR', APP_ROOT_DIR.'logs/');
 define('APP_LOG_FILE', APP_LOG_DIR.'app.log');
 /**
  * string
+ * Application dev log file path
+ */
+define('APP_DEV_LOG_FILE', APP_LOG_DIR.'dev.log');
+/**
+ * string
  * default route
  */
 define('APP_DEFAULT_ROUTE', 'home');
