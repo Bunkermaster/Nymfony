@@ -1,11 +1,7 @@
 <?php
-namespace Controller;
+namespace Helper;
 
 use Exception\FrontControllerException;
-use Helper\Controller;
-use Helper\Profiler;
-use Helper\Router;
-use Helper\ServiceContainer;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
@@ -57,7 +53,7 @@ class FrontController extends Controller
             if (APP_DEV_MODE === true) {
                 Profiler::setRoute(var_export($route, true));
             }
-            $controllerName = __NAMESPACE__.'\\'.$route->controller."Controller";
+            $controllerName = 'Controller\\'.$route->controller."Controller";
             $methodName = $route->action."Action";
             // check for requested route existance
             if (!class_exists($controllerName)) {

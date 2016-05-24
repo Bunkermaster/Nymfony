@@ -8,7 +8,7 @@ if (APP_DEV_MODE === true) {
     \Helper\Profiler::startTimer();
 }
 require_once "../init.php";
-$app = new \Controller\FrontController();
+$app = new \Helper\FrontController();
 if (APP_DEV_MODE === true) {
     \Helper\Profiler::stopTimer();
     $devLogger = \Helper\ServiceContainer::getService('DevLogger');
