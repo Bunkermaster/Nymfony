@@ -9,7 +9,7 @@
 <ul class="list-group">
     <?php foreach ($pageList as $onePage) :?>
         <li class="list-group-item">
-            <?=$onePage->getH1()?> <strong><?=$onePage->getBody()?></strong>
+            <?=$onePage->getTitle()?>
         </li>
     <?php endforeach;?>
 </ul>
