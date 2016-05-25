@@ -14,9 +14,10 @@ class Majordomo
     public static function config()
     {
         $configOutput = '[App Configuration]' . PHP_EOL;
-        $constants = get_defined_constants(true);
-        foreach ($constants['user'] as $constantName => $constantValue) {
-            $configOutput .= $constantName . ' = ' . $constantValue . PHP_EOL;
+        ConfigurationManager::init();
+        $constants = array_merge(get_defined_constants(true)['user'], ConfigurationManager::dump());
+        foreach ($constants as $constantName => $constantValue) {
+            $configOutput .= $constantName . ' = ' . var_export($constantValue, true) . PHP_EOL;
         }
         CLIShellColor::commandOutput($configOutput.PHP_EOL, 'white', 'green');
     }

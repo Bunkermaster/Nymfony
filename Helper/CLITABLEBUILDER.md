@@ -14,6 +14,8 @@ Method takes an array as parametre.
 
 ## Ouput
 
+### Basic
+
 ```
   [Router]
     +-----------+------+-----------+---------+-------+
@@ -27,3 +29,29 @@ Method takes an array as parametre.
     +-----------+------+-----------+---------+-------+
 ```
 
+### No separator
+
+```
+  [Router]
+    +-----------+------+-----------+---------+-------+
+    |identifier |name  |controller |action   |method |
+    +-----------+------+-----------+---------+-------+
+    |home       |home  |Page       |home     |GET    |
+    |home       |home  |Page       |homePost |POST   |
+    |about      |about |Page       |about    |ALL    |
+    +-----------+------+-----------+---------+-------+
+```
+or
+```
+  [Router]
+    +-----------+------+-----------+---------+-------+
+    |identifier |name  |controller |action   |method |
+    +-----------+------+-----------+---------+-------+
+    |home       |home  |Page       |home     |GET    |
+    |home       |home  |Page       |homePost |POST   |
+    +-----------+------+-----------+---------+-------+
+    |identifier |name  |controller |action   |method |
+    +-----------+------+-----------+---------+-------+
+    |about      |about |Page       |about    |ALL    |
+    +-----------+------+-----------+---------+-------+
+```

@@ -73,12 +73,7 @@ class ServiceContainer
      */
     public static function init()
     {
-        if (!file_exists(self::SERVICE_FILE)) {
-            throw new ContainerException('ServiceContainer configuration file \'services.json\' doesn\'t exist');
-        }
-        if (!$services = json_decode(file_get_contents(self::SERVICE_FILE), true)) {
-            throw new ContainerException('ServiceContainer configuration file \'services.json\' badly formated');
-        }
+        $services = JsonParser::getJson(self::SERVICE_FILE, 'ServiceContainer configuration file \'%s\' not found');
         // walk services declared in SERVICE_FILE and instantiate them
         foreach ($services as $name => $serviceArray) {
             if (!isset($serviceArray['class'])) {
@@ -86,7 +81,8 @@ class ServiceContainer
             }
             // instantiate only "devmode" => true services when in APP_DEV_MODE true
             $devMode = $serviceArray['devmode'] ?? false;
-            if ((APP_DEV_MODE === false && $devMode === false) || APP_DEV_MODE === true ) {
+            if ((ConfigurationManager::getConfig('APP_DEV_MODE') === false && $devMode === false) ||
+                ConfigurationManager::getConfig('APP_DEV_MODE') === true ) {
                 self::$serviceCollection[$name] = self::instantiate($serviceArray);
             }
         }
@@ -128,5 +124,4 @@ class ServiceContainer
 
         return self::$serviceCollection;
     }
-
 }

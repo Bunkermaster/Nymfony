@@ -1,10 +1,5 @@
 <?php
 /**
- * bool
- * Dev mode
- */
-define('APP_DEV_MODE', true);
-/**
  * string
  * Root directory
  */
@@ -29,41 +24,6 @@ define('APP_LOG_FILE', APP_LOG_DIR.'app.log');
  * Application dev log file path
  */
 define('APP_DEV_LOG_FILE', APP_LOG_DIR.'dev.log');
-/**
- * string
- * default route
- */
-define('APP_DEFAULT_ROUTE', 'home');
-/**
- * string
- * Database Host
- */
-define('APP_DB_HOST', 'localhost');
-/**
- * string
- * Database Port
- */
-define('APP_DB_PORT', '3306');
-/**
- * string
- * Database database name
- */
-define('APP_DB_NAME', 'kandt');
-/**
- * string
- * Database user name
- */
-define('APP_DB_USER', 'root');
-/**
- * string
- * Database user password
- */
-define('APP_DB_PASS', 'root');
-/**
- * string
- * Database driver
- */
-define('APP_DB_DRIVER', 'pdo_mysql');
 /**
  * string
  * JSON output query string flag

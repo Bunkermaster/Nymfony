@@ -4,6 +4,7 @@ namespace Helper;
 use Exception\FrontControllerException;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+use Helper\ConfigurationManager;
 
 /**
  * Class FrontController
@@ -21,7 +22,7 @@ class FrontController extends Controller
         // get logger 
         $logger = ServiceContainer::getService('Logger');
         $logger->pushHandler(new StreamHandler(APP_LOG_FILE, Logger::INFO));
-        if (APP_DEV_MODE === true) {
+        if (ConfigurationManager::getConfig('APP_DEV_MODE') === true) {
             $devLogger = ServiceContainer::getService('DevLogger');
             $devLogger->pushHandler(new StreamHandler(APP_DEV_LOG_FILE, Logger::INFO));
         }
@@ -35,11 +36,11 @@ class FrontController extends Controller
         } elseif (isset($_POST['route'])) {
             $currRoute = $_POST['route'];
         } else {
-            $currRoute = APP_DEFAULT_ROUTE;
+            $currRoute = ConfigurationManager::getConfig('APP_DEFAULT_ROUTE');
         }
         // init router
         Router::init();
-        if (APP_DEV_MODE === true) {
+        if (ConfigurationManager::getConfig('APP_DEV_MODE') === true) {
             Profiler::setRoute($currRoute);
         }
         // get current route's info
@@ -50,7 +51,7 @@ class FrontController extends Controller
             $this->render('scafolding/footer.php');
             $response->output();
         } else {
-            if (APP_DEV_MODE === true) {
+            if (ConfigurationManager::getConfig('APP_DEV_MODE') === true) {
                 Profiler::setRoute(var_export($route, true));
             }
             $controllerName = 'Controller\\'.$route->controller."Controller";
@@ -84,7 +85,7 @@ class FrontController extends Controller
             if (!isset($request->GET[APP_JSON_QUERY_STRING_FLAG])) {
                 $this->render('scafolding/footer.php');
             }
-            if (APP_DEV_MODE === true) {
+            if (ConfigurationManager::getConfig('APP_DEV_MODE') === true) {
                 Profiler::setMemory(memory_get_usage());
             }
             $response->output();

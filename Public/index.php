@@ -4,12 +4,12 @@
  */
 require_once "../vendor/autoload.php";
 require_once "../config.php";
-if (APP_DEV_MODE === true) {
+require_once "../init.php";
+if (\Helper\ConfigurationManager::getConfig('APP_DEV_MODE') === true) {
     \Helper\Profiler::startTimer();
 }
-require_once "../init.php";
 $app = new \Helper\FrontController();
-if (APP_DEV_MODE === true) {
+if (\Helper\ConfigurationManager::getConfig('APP_DEV_MODE') === true) {
     \Helper\Profiler::stopTimer();
     $devLogger = \Helper\ServiceContainer::getService('DevLogger');
     /** @var \Helper\Monolog $devLogger */
