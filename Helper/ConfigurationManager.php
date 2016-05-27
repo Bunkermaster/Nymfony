@@ -27,7 +27,11 @@ class ConfigurationManager
     {
         if($value === null){
             if(!isset(self::$configurationCollection[$key])){
-                throw new \Exception("Configuration key '$key' not found.");
+                $backtrace = debug_backtrace();
+                throw new \Exception(
+                    "Configuration key '$key' not found. ".
+                    $backtrace[0]['file'] . ' line ' . $backtrace[0]['line']
+                );
             }
             return self::$configurationCollection[$key];
         } else {
