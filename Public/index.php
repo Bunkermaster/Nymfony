@@ -20,5 +20,7 @@ if (\Helper\ConfigurationManager::getConfig('APP_DEV_MODE') === true) {
             'Dump' => var_export(\Helper\Profiler::dump(), true)
         ]
     );
-    var_dump(\Helper\Profiler::dump());
+    if (isset($request->GET[APP_JSON_QUERY_STRING_FLAG])) {
+        \Helper\Profiler::dump();
+    }
 }

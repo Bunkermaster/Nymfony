@@ -67,15 +67,15 @@ class Profiler
      * dumps all profiler values as array
      * @return array
      */
-    public static function dump() : array
+    public static function dump()
     {
-        return [
+        dump([
             'memory' => self::$memory,
             'time' => self::$timeTotal,
             'route' => self::$route,
             'sqlTime' => self::$sqlTimer,
             'outputSize' => self::$outputSize,
-        ];
+        ]);
     }
 
     /**
