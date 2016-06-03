@@ -1,0 +1,16 @@
+{% extends base.html.twig %}
+{% block body %}
+<div class="jumbotron">
+    <h1>HOOOOOME</h1>
+</div>
+<div class="page-header">
+    <h2>{{ prenom }}</h2>
+</div>
+<ul class="list-group">
+    {% for onePgae in pageList %}
+    <li class="list-group-item">
+        {{ onePage.getTitle() }}
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

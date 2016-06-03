@@ -1,7 +1,10 @@
 .idea/
 composer.phar
 vendor/
-logs/*.log
+core/logs/*.log
+!core/logs/.htaccess
+core/cache/*
+!core/cache/.gitkeep
 .DS_Store
 Public/bootstrap
 Public/jquery

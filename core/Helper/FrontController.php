@@ -81,7 +81,15 @@ class FrontController extends Controller
             if (!isset($request->GET[APP_JSON_QUERY_STRING_FLAG])) {
                 $this->render('scafolding/header.php');
             }
-            $controller->$methodName();
+            try{
+                $controller->$methodName();
+            } catch( \Exception $e){
+                header('Content-Type: text/text; charset=UTF-8');
+                echo $e->getMessage().PHP_EOL;
+                echo "Code::".$e->getCode().PHP_EOL;
+                echo $e->getTraceAsString() .PHP_EOL;
+                die();
+            }
             if (!isset($request->GET[APP_JSON_QUERY_STRING_FLAG])) {
                 $this->render('scafolding/footer.php');
             }

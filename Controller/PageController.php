@@ -18,6 +18,7 @@ class PageController extends Controller
      */
     public function __construct()
     {
+        parent::__construct();
     }
 
     /**
@@ -49,7 +50,9 @@ class PageController extends Controller
      */
     public function aboutAction()
     {
-        return $this->render("about.php");
+        return $this->twigRender('about.html.twig', [
+            'val' => 'Valuueeee'
+        ]);
     }
 
     /**
