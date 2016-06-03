@@ -81,13 +81,21 @@ class CLITableBuilder
          */
         $header = '';
         /**
+         * @var string $headerForRepeat stores header for repeated header feature
+         */
+        $headerForRepeat = '';
+        /**
          * @var bool $second used to avoid repeating header after header itself
          */
         $second = false;
         // generate lines
         foreach ($data as $record) {
-            if (is_int($repeatHeader) && ($countLines % $repeatHeader === 0) && $second !== true) {
-                $output .= $header;
+            if (is_int($repeatHeader) && ($countLines % $repeatHeader === 0)) {
+                if ($second !== true) {
+                    $output .= $header;
+                } else {
+                    $output .= $headerForRepeat;
+                }
             }
             $output .= self::TABLE_VERTICAL_LINE;
             $column = 0;
@@ -98,18 +106,22 @@ class CLITableBuilder
             }
             $output .= PHP_EOL;
             // output seperators
-            if ($separatorLines != false) {
-                $output .= $tableLine;
-            }
             if ($second === true) {
                 $second = false;
             }
-
             if ($first === true) {
                 $first = false;
                 $output .= $tableLine;
+                if ($separatorLines !== false) {
+                    $explodeHeader = explode(PHP_EOL, $output);
+                    $headerForRepeat = $explodeHeader[1].PHP_EOL.$explodeHeader[2].PHP_EOL;
+                } else {
+                    $headerForRepeat = $header;
+                }
                 $header = $output;
                 $second = true;
+            } elseif ($separatorLines !== false) {
+                $output .= $tableLine;
             }
             $countLines++;
         }
