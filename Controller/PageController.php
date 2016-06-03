@@ -1,6 +1,8 @@
 <?php
 namespace Controller;
 
+use Helper\Request;
+use Helper\ServiceContainer;
 use Model\PageRepository;
 use Helper\Controller;
 
@@ -23,8 +25,11 @@ class PageController extends Controller
      */
     public function homeAction()
     {
-        if (isset($_GET['prenom'])) {
-            $prenom = $_GET['prenom'];
+        /** @var Request $request */
+        $request = ServiceContainer::getService('Request');
+        // @todo replace $_GET with Request
+        if (isset($request->GET['prenom'])) {
+            $prenom = $request->GET['prenom'];
         } else {
             $prenom = "Yann";
         }

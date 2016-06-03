@@ -1,6 +1,8 @@
 <?php
 namespace Helper;
 
+use Helper\ConfigurationManager;
+
 /**
  * Class Response
  * @package Helper
@@ -138,6 +140,9 @@ class Response
             header($header);
         }
         http_response_code($this->status);
-        exit($this->body);
+        if (ConfigurationManager::getConfig('APP_DEV_MODE') === true) {
+            Profiler::setOutputSize(strlen($this->body));
+        }
+        echo $this->body;
     }
 }

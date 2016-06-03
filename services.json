@@ -13,6 +13,13 @@
       "App"
     ]
   },
+  "DevLogger":{
+    "devmode":true,
+    "class":"Monolog\\Logger",
+    "param":[
+      "Dev"
+    ]
+  },
   "Request":{
     "class":"Helper\\Request"
   },

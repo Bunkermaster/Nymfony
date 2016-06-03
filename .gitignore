@@ -1,7 +1,7 @@
 .idea/
 composer.phar
 vendor/
-logs/app.log
+logs/*.log
 .DS_Store
 Public/bootstrap
 Public/jquery

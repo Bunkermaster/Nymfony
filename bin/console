@@ -2,7 +2,8 @@
 <?php
 chdir($rootDir =  dirname(__DIR__));
 require_once 'vendor/autoload.php';
-require_once 'config.php';
+require_once "config.php";
+require_once 'init.php';
 $commands = [];
 $commands['debug']['container'] = 'Helper\\Majordomo::container';
 $commands['debug']['config'] = 'Helper\\Majordomo::config';

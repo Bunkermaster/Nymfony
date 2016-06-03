@@ -48,7 +48,7 @@ class ServiceContainer
                 if (isset(self::$serviceCollection[$name])) {
                     throw new ContainerException('Service name already taken ('.$service.')');
                 }
-                self::$serviceCollection[$name] = self::instanciate($classParams);
+                self::$serviceCollection[$name] = self::instantiate($classParams);
             } else {
                 throw new ContainerException(
                     $service.' not found (invoked from'.debug_backtrace()[0]['file'].
@@ -73,17 +73,18 @@ class ServiceContainer
      */
     public static function init()
     {
-        if (!file_exists(self::SERVICE_FILE)) {
-            throw new ContainerException('ServiceContainer configuration file \'services.json\' doesn\'t exist');
-        }
-        if (!$services = json_decode(file_get_contents(self::SERVICE_FILE), true)) {
-            throw new ContainerException('ServiceContainer configuration file \'services.json\' badly formated');
-        }
+        $services = JsonParser::getJson(self::SERVICE_FILE, 'ServiceContainer configuration file \'%s\' not found');
+        // walk services declared in SERVICE_FILE and instantiate them
         foreach ($services as $name => $serviceArray) {
             if (!isset($serviceArray['class'])) {
                 continue;
             }
-            self::$serviceCollection[$name] = self::instanciate($serviceArray);
+            // instantiate only "devmode" => true services when in APP_DEV_MODE true
+            $devMode = $serviceArray['devmode'] ?? false;
+            if ((ConfigurationManager::getConfig('APP_DEV_MODE') === false && $devMode === false) ||
+                ConfigurationManager::getConfig('APP_DEV_MODE') === true ) {
+                self::$serviceCollection[$name] = self::instantiate($serviceArray);
+            }
         }
     }
 
@@ -92,7 +93,7 @@ class ServiceContainer
      * @param array $serviceArray
      * @return object
      */
-    private static function instanciate(array $serviceArray)
+    private static function instantiate(array $serviceArray)
     {
         $className = $serviceArray['class'];
         $constructor = new \ReflectionMethod($serviceArray['class'], '__construct');
@@ -123,5 +124,4 @@ class ServiceContainer
 
         return self::$serviceCollection;
     }
-
 }
