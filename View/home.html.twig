@@ -1,5 +1,5 @@
-{% extends base.html.twig %}
-{% block body %}
+{% extends "base.html.twig" %}
+{% block content %}
 <div class="jumbotron">
     <h1>HOOOOOME</h1>
 </div>
@@ -7,9 +7,9 @@
     <h2>{{ prenom }}</h2>
 </div>
 <ul class="list-group">
-    {% for onePgae in pageList %}
+    {% for onePage in pageList %}
     <li class="list-group-item">
-        {{ onePage.getTitle() }}
+        {{ onePage.getTitle }}
     </li>
     {% endfor %}
 </ul>

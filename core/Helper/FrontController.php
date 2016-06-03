@@ -19,6 +19,7 @@ class FrontController extends Controller
      */
     public function __construct()
     {
+        parent::__construct();
         // get logger 
         $logger = ServiceContainer::getService('Logger');
         $logger->pushHandler(new StreamHandler(APP_LOG_FILE, Logger::INFO));
@@ -46,9 +47,7 @@ class FrontController extends Controller
         // get current route's info
         if (!($route = Router::getRoute($currRoute))) {
             // if the route is not found, 404 error
-            $this->render('scafolding/header.php');
-            $this->render('404.php', [], 404);
-            $this->render('scafolding/footer.php');
+            $this->twigRender('404.html.twig', [], 404);
             $response->output();
         } else {
             if (ConfigurationManager::getConfig('APP_DEV_MODE') === true) {

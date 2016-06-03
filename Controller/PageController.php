@@ -36,8 +36,8 @@ class PageController extends Controller
         }
         $repo = new PageRepository();
         $pageList = $repo->get();
-        return $this->render(
-            "home.php",
+        return $this->twigRender(
+            "home.html.twig",
             [
                 'prenom' => $prenom,
                 'pageList' => $pageList
@@ -60,6 +60,6 @@ class PageController extends Controller
      */
     public function homePostAction()
     {
-        return $this->render("ehmerde.php");
+        return $this->twigRender('ehmerde.html.twig', []);
     }
 }

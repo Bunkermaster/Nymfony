@@ -15,23 +15,19 @@
     <script src="jquery/jquery-1.10.2.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
 </head>
-<body>
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="error-template">
-                <h1>Oops!</h1>
-                <h2>PHP version error</h2>
-                <div class="error-details">
-                    You need PHP 7.0.0 and above to run this application
+<body role="document">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="error-template">
+                    <h1>Oops!</h1>
+                    <h2>PHP version error</h2>
+                    <div class="error-details">
+                        You need PHP 7.0.0 and above to run this application
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-<script type="text/javascript">
-
-</script>
 </body>
 </html>

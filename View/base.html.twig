@@ -2,11 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
     <title>{% block title %}Default title{% endblock %}</title>
     {% block cssstyle %}{% endblock %}
 </head>
-<body>
+<body role="document">
+<div class="container theme-showcase" role="main">
 {% block content %}{% endblock %}
+</div>
 {% block javascript %}{% endblock %}
 </body>
 </html>
