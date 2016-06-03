@@ -36,7 +36,7 @@ abstract class Controller
      * @throws ViewNotFoundException
      * @return Response
      */
-    protected function render($view, $data = [], $status = null, $headers = null)
+    protected function phpRrender($view, $data = [], $status = null, $headers = null)
     {
         if (!file_exists(APP_VIEW_DIR.$view)) {
             throw new ViewNotFoundException('View '.$view.' not found.');
@@ -66,7 +66,7 @@ abstract class Controller
      * @param array $headers HTTP headers
      * @return Response generated response
      */
-    protected function twigRender($name, $params = [], $status = null, $headers = null){
+    protected function render($name, $params = [], $status = null, $headers = null){
         $request = ServiceContainer::getService('Request');
         if (isset($request->GET[APP_JSON_QUERY_STRING_FLAG])) {
             $output = json_encode($params);

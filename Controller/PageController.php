@@ -1,6 +1,7 @@
 <?php
 namespace Controller;
 
+use Exception\ContainerException;
 use Helper\Request;
 use Helper\ServiceContainer;
 use Model\PageRepository;
@@ -28,7 +29,6 @@ class PageController extends Controller
     {
         /** @var Request $request */
         $request = ServiceContainer::getService('Request');
-        // @todo replace $_GET with Request
         if (isset($request->GET['prenom'])) {
             $prenom = $request->GET['prenom'];
         } else {
@@ -36,7 +36,7 @@ class PageController extends Controller
         }
         $repo = new PageRepository();
         $pageList = $repo->get();
-        return $this->twigRender(
+        return $this->render(
             "home.html.twig",
             [
                 'prenom' => $prenom,
@@ -50,7 +50,7 @@ class PageController extends Controller
      */
     public function aboutAction()
     {
-        return $this->twigRender('about.html.twig', [
+        return $this->render('about.html.twig', [
             'val' => 'Valuueeee'
         ]);
     }
@@ -60,6 +60,6 @@ class PageController extends Controller
      */
     public function homePostAction()
     {
-        return $this->twigRender('ehmerde.html.twig', []);
+        return $this->render('ehmerde.html.twig', []);
     }
 }

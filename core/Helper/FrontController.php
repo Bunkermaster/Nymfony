@@ -47,7 +47,7 @@ class FrontController extends Controller
         // get current route's info
         if (!($route = Router::getRoute($currRoute))) {
             // if the route is not found, 404 error
-            $this->twigRender('404.html.twig', [], 404);
+            $this->render('scafolding/404.html.twig', [], 404);
             $response->output();
         } else {
             if (ConfigurationManager::getConfig('APP_DEV_MODE') === true) {
@@ -77,23 +77,15 @@ class FrontController extends Controller
                     'Controller action method does not exist'
                 );
             }
-            if (!isset($request->GET[APP_JSON_QUERY_STRING_FLAG])) {
-                $this->render('scafolding/header.php');
-            }
             try{
                 $controller->$methodName();
+                if (ConfigurationManager::getConfig('APP_DEV_MODE') === true) {
+                    Profiler::setMemory(memory_get_usage());
+                }
             } catch( \Exception $e){
-                header('Content-Type: text/text; charset=UTF-8');
-                echo $e->getMessage().PHP_EOL;
-                echo "Code::".$e->getCode().PHP_EOL;
-                echo $e->getTraceAsString() .PHP_EOL;
-                die();
-            }
-            if (!isset($request->GET[APP_JSON_QUERY_STRING_FLAG])) {
-                $this->render('scafolding/footer.php');
-            }
-            if (ConfigurationManager::getConfig('APP_DEV_MODE') === true) {
-                Profiler::setMemory(memory_get_usage());
+                $this->render('scafolding/exception.html.twig', [
+                    'exception' => $e
+                ]);
             }
             $response->output();
         }
