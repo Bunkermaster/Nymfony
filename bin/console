@@ -1,11 +1,15 @@
 #!/usr/bin/env php
 <?php
+use \Helper\CLIShellColor;
+use \Helper\Majordomo;
+
+
 chdir($rootDir =  dirname(__DIR__));
 require_once 'vendor/autoload.php';
 require_once "config.php";
 require_once 'init.php';
 $configurationFile = APP_CONFIG_DIR."commands.json";
-$commands = \Helper\Majordomo::loadConfig($configurationFile);
+$commands = Majordomo::loadConfig($configurationFile);
 // check if requested command exists,
 // if not available, list commands
 if (isset($argv[1]) && isset($argv[2]) && isset($commands[$argv[1]][$argv[2]])) {
@@ -16,12 +20,14 @@ if (isset($argv[1]) && isset($argv[2]) && isset($commands[$argv[1]][$argv[2]])) 
     $output .= PHP_EOL;
     $output .= '[Available commands]'.PHP_EOL;
     foreach ($commands as $groupeName => $CommandGroup) {
-        $output .= '  ['.$groupeName.']'.PHP_EOL;
+        $output .= CLIShellColor::moutput('  ['.$groupeName.']', 'green', 'black').PHP_EOL;
         foreach ($CommandGroup as $command => $commandDetails) {
             $command = str_pad($command, 20, ' ');
-            $output .= "    $command".$commandDetails['man'].PHP_EOL;
+            $output .= CLIShellColor::moutput("    $command", 'green', 'black')
+                .CLIShellColor::moutput($commandDetails['man'], 'white', 'black')
+                .PHP_EOL;
         }
         $output .= PHP_EOL;
     }
-    \Helper\CLIShellColor::mecho($output, 'green', 'black');
+    CLIShellColor::mecho($output, 'green', 'black');
 }

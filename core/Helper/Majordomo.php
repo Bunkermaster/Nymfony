@@ -64,6 +64,12 @@ class Majordomo
         CLIShellColor::commandOutput($containerOutput.PHP_EOL, 'white', 'green');
     }
 
+    /**
+     * Builds the commands array for the bin/console based on the commands.json file
+     * @param $configurationFile
+     * @return array
+     * @throws \Exception\JsonException
+     */
     public static function loadConfig($configurationFile) : array
     {
         $commandsArray = JsonParser::getJson($configurationFile, "Command configuratio file not found");

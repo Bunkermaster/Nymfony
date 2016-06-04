@@ -61,6 +61,17 @@ class CLIShellColor
      */
     public static function mecho($string, $FGColor = null, $BGColor = null)
     {
+        echo self::moutput($string, $FGColor, $BGColor);;
+    }
+
+    /**
+     * @param $string
+     * @param null $FGColor
+     * @param null $BGColor
+     * @return string
+     */
+    public static function moutput($string, $FGColor = null, $BGColor = null)
+    {
         $output = '';
         $coloredOutput = false;
         if (isset(self::$FGColors[$FGColor])) {
@@ -75,7 +86,7 @@ class CLIShellColor
         if ($coloredOutput != false) {
             $output .= "\033[0m";
         }
-        echo $output;
+        return $output;
     }
 
     /**
