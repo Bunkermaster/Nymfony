@@ -21,7 +21,7 @@ class Router
     /**
      * string
      */
-    const ROUTE_FILE = 'routes.json';
+    const ROUTE_FILE = APP_CONFIG_DIR.'routes.json';
     /**
      * string
      */
@@ -34,7 +34,7 @@ class Router
      */
     public static function init()
     {
-        $routeFile = APP_ROOT_DIR.self::ROUTE_FILE;
+        $routeFile = self::ROUTE_FILE;
         // controle de presence du fichier de routes
         if (!file_exists($routeFile)) {
             throw new RouterException(

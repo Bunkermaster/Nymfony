@@ -15,7 +15,7 @@ class ConfigurationManager
     /**
      *
      */
-    const CONFIGURATION_FILE = APP_ROOT_DIR.'config.json';
+    const CONFIGURATION_FILE = APP_CONFIG_DIR.'config.json';
 
     /**
      * @param string $key

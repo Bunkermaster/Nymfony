@@ -9,7 +9,8 @@ A simple exercise for my students to the different steps of developing a framewo
 ## View
 
 Views are stored in the View/ directory.
-Views are rendered from Controllers.  
+Views are rendered from Controllers.
+The template manager used to generate views [is Twig](http://twig.sensiolabs.org/)
  
 ```
 return $this->render("somepage.php");
@@ -17,11 +18,11 @@ return $this->render("somepage.php");
 
 ## Helper\Router
 
-Routes are declared in the `/routes.json` file. See [Router info](./Helper/ROUTER.md)
+Routes are declared in the `core/config/routes.json` file. See [Router info](./Helper/ROUTER.md)
 
 ## Helper\ServiceContainer
 
-Services are declared in the `/services.json` file. See [ServiceContainer info](./Helper/SERVICECONTAINER.md)
+Services are declared in the `core/config/services.json` file. See [ServiceContainer info](./Helper/SERVICECONTAINER.md)
 
 ## Helper\CLITableBuilder
 

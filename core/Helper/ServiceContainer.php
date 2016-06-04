@@ -26,7 +26,7 @@ class ServiceContainer
     /**
      * Configuration file path
      */
-    const SERVICE_FILE = APP_ROOT_DIR.'services.json';
+    const SERVICE_FILE = APP_CONFIG_DIR.'services.json';
 
     /**
      * Service Container retrieval method.
@@ -68,7 +68,7 @@ class ServiceContainer
     }
 
     /**
-     * init initializes the ServiceContainer based on the /services.json file
+     * init initializes the ServiceContainer based on the core/config/services.json file
      * @throws ContainerException
      */
     public static function init()

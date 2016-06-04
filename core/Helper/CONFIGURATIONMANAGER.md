@@ -1,7 +1,7 @@
 # Helper\ConfigurationManager
 
 ## Definition
-Configuration is declared in the `/config.json` file with the following attribute list:
+Configuration is declared in the `core/config/config.json` file with the following attribute list:
 
 * key: String identifying the configuration value
 * value: array|string|int|float|bool the value of the configuration
@@ -24,7 +24,7 @@ Note: Objects cannot be concidered as values
 ## ConfigurationManager::getConfig(string $key, $value = null) : array|string|int|float|bool
 
 * $key identifies the configuration entry
-* $value is set if you want to add dynamic configuration without going through the ```/config.json``` file.
+* $value is set if you want to add dynamic configuration without going through the ```core/config/config.json``` file.
 
 Returns the ```value``` associated with the ```key```
 

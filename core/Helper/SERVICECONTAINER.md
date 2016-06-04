@@ -1,7 +1,7 @@
 # ServiceContainer
 
 ## Definition
-Services are declared in the `/services.json` file with the following attribute list:
+Services are declared in the `core/config/services.json` file with the following attribute list:
 
 * name: Class name with fully qualified Namespaces (ex: `\Helper\Request`)
 * param: Array of parameters

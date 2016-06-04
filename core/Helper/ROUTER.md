@@ -1,7 +1,7 @@
 # Router
 
 ## Definition
-Routes are defined in the `routes.json` file with the following attribute list:
+Routes are defined in the `core/config/routes.json` file with the following attribute list:
 
 * name: feature name, will be the URI part of route name
 * controller: controller name (without Controller suffix, Page for PageController)

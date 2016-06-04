@@ -1,0 +1,26 @@
+{
+  "debug": [
+    {
+      "name": "container",
+      "method": "Helper\\Majordomo::container",
+      "man": "List all services declared in the Container"
+    },
+    {
+      "name": "config",
+      "method": "Helper\\Majordomo::config",
+      "man": "List App Configuration"
+    },
+    {
+      "name": "router",
+      "method": "Helper\\Majordomo::router",
+      "man": "List routes and details"
+    }
+  ],
+  "server": [
+    {
+      "name": "run",
+      "method": "Helper\\Server::run",
+      "man": "Runs PHP dev server"
+    }
+  ]
+}

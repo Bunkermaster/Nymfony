@@ -1,6 +1,7 @@
 <?php
 namespace Helper;
 
+
 /**
  * Class Majordomo
  * @package Helper
@@ -61,5 +62,18 @@ class Majordomo
             10
         );
         CLIShellColor::commandOutput($containerOutput.PHP_EOL, 'white', 'green');
+    }
+
+    public static function loadConfig($configurationFile) : array
+    {
+        $commandsArray = JsonParser::getJson($configurationFile, "Command configuratio file not found");
+        $commands = [];
+        foreach($commandsArray as $catName => $category){
+            foreach($category as $commandName => $command){
+                $commands[$catName][$command['name']]['method'] = $command['method'];
+                $commands[$catName][$command['name']]['man'] = $command['man'];
+            }
+        }
+        return $commands;
     }
 }

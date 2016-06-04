@@ -11,6 +11,11 @@ define('APP_ROOT_DIR', __DIR__."/");
 define('APP_CORE_DIR', APP_ROOT_DIR.'core/');
 /**
  * string
+ * Config directory
+ */
+define('APP_CONFIG_DIR', APP_CORE_DIR.'config/');
+/**
+ * string
  * View directory
  */
 define('APP_CACHE_DIR', APP_CORE_DIR.'cache/');
