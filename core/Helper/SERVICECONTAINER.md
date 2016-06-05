@@ -33,7 +33,6 @@ This command displays the following
     +---------+----------------+
     |Name     |Class           |
     +---------+----------------+
-    |PDO      |PDO             |
     |Logger   |Monolog\Logger  |
     |Request  |Helper\Request  |
     |Response |Helper\Response |

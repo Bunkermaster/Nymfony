@@ -2,6 +2,7 @@
 namespace Helper;
 
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityRepository;
 use Exception\RepositoryException;
 
 /**
@@ -12,10 +13,6 @@ use Exception\RepositoryException;
 abstract class Repository
 {
     /**
-     * @var \PDO
-     */
-    protected $pdo;
-    /**
      * @var EntityManager
      */
     protected $entityManager;
@@ -25,7 +22,6 @@ abstract class Repository
      */
     public function __construct()
     {
-        $this->pdo = ServiceContainer::getService('PDO');
         $repositoryReflection = new \ReflectionClass($this);
         $this->entityManager = ServiceContainer::getService('EntityManager');
         // check if repository has $entity property

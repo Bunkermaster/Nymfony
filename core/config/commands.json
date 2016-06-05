@@ -22,5 +22,12 @@
       "method": "Helper\\Server::run",
       "man": "Runs PHP dev server"
     }
+  ],
+  "cache": [
+    {
+      "name": "clear",
+      "method": "Helper\\Majordomo::clearTwigCache",
+      "man": "Clear Twig cache"
+    }
   ]
 }

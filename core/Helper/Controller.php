@@ -26,6 +26,9 @@ abstract class Controller
         $this->twig = new \Twig_Environment($loader, array(
             'cache' => APP_CACHE_DIR,
         ));
+        if (ConfigurationManager::getConfig('APP_DEV_MODE') === true) {
+            $this->twig->getCache(false);
+        }
     }
 
     /**

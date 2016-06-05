@@ -64,6 +64,35 @@ class Majordomo
         CLIShellColor::commandOutput($containerOutput.PHP_EOL, 'white', 'green');
     }
 
+    public static function clearTwigCache()
+    {
+        CLIShellColor::commandOutput("Clearing cache", 'green', 'black');
+        $path = APP_CACHE_DIR;
+        $rmDir = function($file, $path) use (&$rmDir)
+        {
+            if(substr($file, 0, 1) !== '.'){
+                if(is_dir($path.$file)){
+                    if(($dirContent = scandir($path.$file)) !== false){
+                        if(count($dirContent) > 2){
+                            foreach($dirContent as $oneDir){
+                                $rmDir($oneDir, $path.$file.'/');
+                            }
+                        } else {
+                            rmdir($file);
+                        }
+                    }
+                    rmdir($path.$file);
+                } elseif(is_file($path.$file)) {
+                    unlink($path.$file);
+                }
+            }
+        };
+        foreach( scandir($path) as $oneFile){
+            $rmDir($oneFile, $path);
+        }
+        CLIShellColor::commandOutput("Cache cleared", 'green', 'black');
+    }
+
     /**
      * Builds the commands array for the bin/console based on the commands.json file
      * @param $configurationFile
