@@ -29,5 +29,12 @@
       "method": "Helper\\Majordomo::clearTwigCache",
       "man": "Clear Twig cache"
     }
+  ],
+  "generate": [
+    {
+      "name": "controller",
+      "method": "Helper\\ArtefactBuilder::generateController",
+      "man": "Generate a controller"
+    }
   ]
 }

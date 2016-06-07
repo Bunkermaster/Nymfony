@@ -10,12 +10,14 @@ namespace Helper;
 class Majordomo
 {
     /**
+     * Clear TWIG cache
      * @return void
+     * @throws \Exception if APP_ROOT_DIR is not defined
+     * @throws \Exception if trying to delete a directory not in APP
      */
     public static function clearTwigCache()
     {
-        // @todo secure the directory to avoid deleting the whole file system
-        if (!defined(APP_ROOT_DIR)) {
+        if (!defined('APP_ROOT_DIR')) {
             throw new \Exception('Could not secure cache directory clearing.');
         }
         CLIShellColor::commandOutput("Clearing cache", 'green', 'black');
@@ -29,7 +31,7 @@ class Majordomo
                     'The directory attempted to clear is not an application directory.'
                 );
             }
-            if ($file !== '.' && $file !== '..') {
+            if (!in_array($file, ['.', '..'])) {
                 if (is_dir($path.$file)) {
                     if (($dirContent = scandir($path.$file)) !== false) {
                         if (count($dirContent) > 2) {
@@ -53,12 +55,13 @@ class Majordomo
     }
 
     /**
-     * Builds the commands array for the bin/console based on the commands.json file
+     * Builds the commands array for the bin/console based on
+     * the configuration file
      * @param string $configurationFile
      * @return array
      * @throws \Exception\JsonException
      */
-    public static function loadConfig($configurationFile) : array
+    public static function loadConfig($configurationFile = 'commands.json') : array
     {
         $commandsArray = JsonParser::getJson(
             $configurationFile,
