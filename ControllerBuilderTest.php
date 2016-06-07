@@ -1,5 +1,7 @@
 <?php
-// @todo code the controller builder CLI
+/**
+ * @todo code the controller builder CLI
+ */
 require_once "vendor/autoload.php";
 require_once "config.php";
 \Helper\ConfigurationManager::init();
@@ -12,6 +14,7 @@ echo $twig->render('controller.php.twig', [
     'controllerName' => 'SomeClass',
     'methods' => [
         'index',
+        'kylian',
         'list'
     ]
 ]);

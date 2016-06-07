@@ -11,20 +11,26 @@ class Majordomo
 {
     /**
      * Outputs current configuration
+     * @return void
      */
     public static function config()
     {
         $configOutput = '[App Configuration]' . PHP_EOL;
         ConfigurationManager::init();
-        $constants = array_merge(get_defined_constants(true)['user'], ConfigurationManager::dump());
+        $constants = array_merge(
+            get_defined_constants(true)['user'],
+            ConfigurationManager::dump()
+        );
         foreach ($constants as $constantName => $constantValue) {
-            $configOutput .= $constantName . ' = ' . var_export($constantValue, true) . PHP_EOL;
+            $configOutput .= $constantName.' = '.var_export($constantValue, true);
+            $configOutput .= PHP_EOL;
         }
         CLIShellColor::commandOutput($configOutput.PHP_EOL, 'white', 'green');
     }
 
     /**
      * Outputs router debug information
+     * @return void
      */
     public static function router()
     {
@@ -42,6 +48,7 @@ class Majordomo
 
     /**
      * Outputs container debug information
+     * @return void
      */
     public static function container()
     {
@@ -64,17 +71,20 @@ class Majordomo
         CLIShellColor::commandOutput($containerOutput.PHP_EOL, 'white', 'green');
     }
 
+    /**
+     * @return void
+     */
     public static function clearTwigCache()
     {
+        // @todo secure the directory to avoid deleting the whole file system
         CLIShellColor::commandOutput("Clearing cache", 'green', 'black');
         $path = APP_CACHE_DIR;
-        $rmDir = function($file, $path) use (&$rmDir)
-        {
-            if(substr($file, 0, 1) !== '.'){
-                if(is_dir($path.$file)){
-                    if(($dirContent = scandir($path.$file)) !== false){
-                        if(count($dirContent) > 2){
-                            foreach($dirContent as $oneDir){
+        $rmDir = function ($file, $path) use (&$rmDir) {
+            if ($file !== '.' && $file !== '..') {
+                if (is_dir($path.$file)) {
+                    if (($dirContent = scandir($path.$file)) !== false) {
+                        if (count($dirContent) > 2) {
+                            foreach ($dirContent as $oneDir) {
                                 $rmDir($oneDir, $path.$file.'/');
                             }
                         } else {
@@ -82,12 +92,12 @@ class Majordomo
                         }
                     }
                     rmdir($path.$file);
-                } elseif(is_file($path.$file)) {
+                } elseif (is_file($path.$file)) {
                     unlink($path.$file);
                 }
             }
         };
-        foreach( scandir($path) as $oneFile){
+        foreach (scandir($path) as $oneFile) {
             $rmDir($oneFile, $path);
         }
         CLIShellColor::commandOutput("Cache cleared", 'green', 'black');
@@ -95,16 +105,19 @@ class Majordomo
 
     /**
      * Builds the commands array for the bin/console based on the commands.json file
-     * @param $configurationFile
+     * @param string $configurationFile
      * @return array
      * @throws \Exception\JsonException
      */
     public static function loadConfig($configurationFile) : array
     {
-        $commandsArray = JsonParser::getJson($configurationFile, "Command configuratio file not found");
+        $commandsArray = JsonParser::getJson(
+            $configurationFile,
+            "Command configuratio file not found"
+        );
         $commands = [];
-        foreach($commandsArray as $catName => $category){
-            foreach($category as $commandName => $command){
+        foreach ($commandsArray as $catName => $category) {
+            foreach ($category as $commandName => $command) {
                 $commands[$catName][$command['name']]['method'] = $command['method'];
                 $commands[$catName][$command['name']]['man'] = $command['man'];
             }
