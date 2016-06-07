@@ -57,7 +57,7 @@ class ArtefactBuilder
             throw new \Exception('Problem writing Controller file.');
         }
         echo $controllerFile." created.".PHP_EOL;
-        $viewDir = APP_VIEW_DIR.$controllerName;
+        $viewDir = APP_VIEW_DIR.$controllerArtefact;
         if (!mkdir($viewDir)) {
             throw new \Exception($controllerArtefact.' view directory creation failed.');
         }
