@@ -11,10 +11,13 @@ use Exception\RouterException;
 class Router
 {
     /**
+     * Collection of application routes
      * @var array static
      */
     private static $routesCollection;
     /**
+     * Collection of route identifier strings
+     * referencing the $routesCollection
      * @var array static
      */
     private static $routesIdentifierCollection;
@@ -105,4 +108,6 @@ class Router
             return $output;
         }
     }
+    
+    
 }

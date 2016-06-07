@@ -10,76 +10,25 @@ namespace Helper;
 class Majordomo
 {
     /**
-     * Outputs current configuration
-     * @return void
-     */
-    public static function config()
-    {
-        $configOutput = '[App Configuration]' . PHP_EOL;
-        ConfigurationManager::init();
-        $constants = array_merge(
-            get_defined_constants(true)['user'],
-            ConfigurationManager::dump()
-        );
-        foreach ($constants as $constantName => $constantValue) {
-            $configOutput .= $constantName.' = '.var_export($constantValue, true);
-            $configOutput .= PHP_EOL;
-        }
-        CLIShellColor::commandOutput($configOutput.PHP_EOL, 'white', 'green');
-    }
-
-    /**
-     * Outputs router debug information
-     * @return void
-     */
-    public static function router()
-    {
-        $routerOutput = '[Router]' . PHP_EOL;
-        Router::init();
-        $routes = Router::dump();
-        $routerOutput .= CLITableBuilder::init(
-            $routes,
-            ['identifier', 'name', 'controller', 'action', 'method'],
-            false,
-            10
-        );
-        CLIShellColor::commandOutput($routerOutput.PHP_EOL, 'white', 'green');
-    }
-
-    /**
-     * Outputs container debug information
-     * @return void
-     */
-    public static function container()
-    {
-        $containerOutput = '[ServiceContainer]' . PHP_EOL;
-        ServiceContainer::init();
-        $services = ServiceContainer::getServiceCollection();
-        $serviceDebug = [];
-        foreach ($services as $name => $service) {
-            $serviceDebug[] = [
-                'name' => $name,
-                'class' => get_class($service),
-            ];
-        }
-        $containerOutput .= CLITableBuilder::init(
-            $serviceDebug,
-            ['Name', 'Class'],
-            false,
-            10
-        );
-        CLIShellColor::commandOutput($containerOutput.PHP_EOL, 'white', 'green');
-    }
-
-    /**
      * @return void
      */
     public static function clearTwigCache()
     {
         // @todo secure the directory to avoid deleting the whole file system
+        if (!defined(APP_ROOT_DIR)) {
+            throw new \Exception('Could not secure cache directory clearing.');
+        }
         CLIShellColor::commandOutput("Clearing cache", 'green', 'black');
         $path = APP_CACHE_DIR;
         $rmDir = function ($file, $path) use (&$rmDir) {
+            if (strpos($path, APP_ROOT_DIR) !== 0) {
+                // in case of attempted deletion of a directory not inside
+                // the application directory, throw an exception to halt the
+                // execution of the script.
+                throw new \Exception(
+                    'The directory attempted to clear is not an application directory.'
+                );
+            }
             if ($file !== '.' && $file !== '..') {
                 if (is_dir($path.$file)) {
                     if (($dirContent = scandir($path.$file)) !== false) {
