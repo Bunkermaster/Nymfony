@@ -37,14 +37,15 @@ class ArtefactBuilder
         while (($oneMethod = readline("Enter action name, leave blank to stop adding methods [suffixed with Action] : ")) != '') {
             $methodList[] = preg_replace("/\W/", "", $oneMethod);
         }
+        $controllerArtefact = self::getArtefactName($controllerName, "Controller");
         $controllerCode = $twig->render('controller.php.twig', [
             'controllerName' => $controllerName,
+            'controllerArtefact' => $controllerArtefact,
             'methods' => $methodList
         ]);
         // create the controller file and write the generated code in it
         $controllerDirectory = APP_ROOT_DIR."Controller/";
         $controllerFile = $controllerDirectory.$controllerName.'.php';
-        $controllerArtefact = '';
         if (!is_writable($controllerDirectory)) {
             throw new \Exception('Controller directory is not writable.');
         }
@@ -56,9 +57,13 @@ class ArtefactBuilder
             throw new \Exception('Problem writing Controller file.');
         }
         echo $controllerFile." created.".PHP_EOL;
+        $viewDir = APP_VIEW_DIR.$controllerName;
+        if (!mkdir($viewDir)) {
+            throw new \Exception($controllerArtefact.' view directory creation failed.');
+        }
         // generate the views referenced in the newly created controller actions
         foreach ($methodList as $aMethod) {
-            $methodFile = APP_VIEW_DIR.$controllerName."/".self::getArtefactName($aMethod).".html.twig";
+            $methodFile = $viewDir."/".self::getArtefactName($aMethod, "Action").".html.twig";
             touch($methodFile);
             if (!file_put_contents($methodFile, '{% extends "base.html.twig" %}'.PHP_EOL)) {
                 throw new \Exception('Problem writing Controller file.');
