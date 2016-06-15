@@ -22,6 +22,10 @@ class Router
      */
     private static $routesIdentifierCollection;
     /**
+     * @var string current route identifier
+     */
+    private static $currentRoute;
+    /**
      * string
      */
     const ROUTE_FILE = APP_CONFIG_DIR.'routes.json';
@@ -29,7 +33,6 @@ class Router
      * string
      */
     const ROUTE_ALL_METHODS_PLACEHOLDER = 'ALL';
-
     /**
      * Initialize the router
      * @throws RouterException
@@ -107,6 +110,22 @@ class Router
 
             return $output;
         }
+    }
+
+    /**
+     * @return string
+     */
+    public static function getCurrentRoute()
+    {
+        return self::$routesIdentifierCollection[self::$currentRoute];
+    }
+
+    /**
+     * @param string $currentRoute
+     */
+    public static function setCurrentRoute($currentRoute)
+    {
+        self::$currentRoute = $currentRoute;
     }
     
     

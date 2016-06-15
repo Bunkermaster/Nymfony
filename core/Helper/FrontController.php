@@ -1,6 +1,7 @@
 <?php
 namespace Helper;
 
+use Helper\TrafficTracker;
 use Exception\FrontControllerException;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
@@ -45,7 +46,10 @@ class FrontController extends Controller
             Profiler::setRoute($currRoute);
         }
         // get current route's info
-        if (!($route = Router::getRoute($currRoute))) {
+        $route = Router::getRoute($currRoute);
+        Router::setCurrentRoute($route->routeIdentifier);
+        TrafficTracker::trackIt();
+        if (!$route) {
             // if the route is not found, 404 error
             $this->render('scafolding/404.html.twig', [], 404);
             $response->output();
@@ -77,12 +81,12 @@ class FrontController extends Controller
                     'Controller action method does not exist'
                 );
             }
-            try{
+            try {
                 $controller->$methodName();
                 if (ConfigurationManager::getConfig('APP_DEV_MODE') === true) {
                     Profiler::setMemory(memory_get_usage());
                 }
-            } catch( \Exception $e){
+            } catch (\Exception $e) {
                 $this->render('scafolding/exception.html.twig', [
                     'exception' => $e
                 ]);

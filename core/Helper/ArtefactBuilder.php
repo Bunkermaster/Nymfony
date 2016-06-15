@@ -45,7 +45,7 @@ class ArtefactBuilder
         ]);
         // create the controller file and write the generated code in it
         $controllerDirectory = APP_ROOT_DIR."Controller/";
-        $controllerFile = $controllerDirectory.$controllerName.'.php';
+        $controllerFile = $controllerDirectory.strtolower($controllerName).'.php';
         if (!is_writable($controllerDirectory)) {
             throw new \Exception('Controller directory is not writable.');
         }
@@ -57,13 +57,15 @@ class ArtefactBuilder
             throw new \Exception('Problem writing Controller file.');
         }
         echo $controllerFile." created.".PHP_EOL;
-        $viewDir = APP_VIEW_DIR.$controllerArtefact;
+        $viewDir = APP_VIEW_DIR.strtolower($controllerArtefact);
         if (!mkdir($viewDir)) {
             throw new \Exception($controllerArtefact.' view directory creation failed.');
         }
         // generate the views referenced in the newly created controller actions
         foreach ($methodList as $aMethod) {
-            $methodFile = $viewDir."/".self::getArtefactName($aMethod, "Action").".html.twig";
+            // @todo fix action name in view name?
+//            $methodFile = $viewDir."/".strtolower(self::getArtefactName($aMethod, "Action")).".html.twig";
+            $methodFile = $viewDir."/".strtolower($aMethod).".html.twig";
             touch($methodFile);
             if (!file_put_contents($methodFile, '{% extends "base.html.twig" %}'.PHP_EOL)) {
                 throw new \Exception('Problem writing Controller file.');

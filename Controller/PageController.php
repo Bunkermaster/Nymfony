@@ -3,6 +3,7 @@ namespace Controller;
 
 use Exception\ContainerException;
 use Helper\Request;
+use Helper\Response;
 use Helper\ServiceContainer;
 use Model\PageRepository;
 use Helper\Controller;
@@ -23,7 +24,7 @@ class PageController extends Controller
     }
 
     /**
-     *
+     * @return Response
      */
     public function homeAction()
     {
@@ -46,7 +47,7 @@ class PageController extends Controller
     }
 
     /**
-     *
+     * @return Response
      */
     public function aboutAction()
     {
@@ -56,7 +57,7 @@ class PageController extends Controller
     }
 
     /**
-     *
+     * @return Response
      */
     public function homePostAction()
     {
