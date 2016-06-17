@@ -65,6 +65,10 @@ class Request
         $this->IP = $_SERVER['REMOTE_ADDR'] ?? false;
         $this->USER_AGENT = $_SERVER['HTTP_USER_AGENT'] ?? '';
         $this->HTTP_REFERER = $_SERVER['HTTP_REFERER'] ?? '';
-        $this->headers = \getallheaders();
+        if (function_exists('getallheaders')) {
+            $this->headers = \getallheaders();
+        } else {
+            $this->headers = '';
+        }
     }
 }
