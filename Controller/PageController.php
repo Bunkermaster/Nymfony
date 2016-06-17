@@ -1,7 +1,9 @@
 <?php
 namespace Controller;
 
+use Exception\ContainerException;
 use Helper\Request;
+use Helper\Response;
 use Helper\ServiceContainer;
 use Model\PageRepository;
 use Helper\Controller;
@@ -18,16 +20,16 @@ class PageController extends Controller
      */
     public function __construct()
     {
+        parent::__construct();
     }
 
     /**
-     *
+     * @return Response
      */
     public function homeAction()
     {
         /** @var Request $request */
         $request = ServiceContainer::getService('Request');
-        // @todo replace $_GET with Request
         if (isset($request->GET['prenom'])) {
             $prenom = $request->GET['prenom'];
         } else {
@@ -36,7 +38,7 @@ class PageController extends Controller
         $repo = new PageRepository();
         $pageList = $repo->get();
         return $this->render(
-            "home.php",
+            "home.html.twig",
             [
                 'prenom' => $prenom,
                 'pageList' => $pageList
@@ -45,18 +47,20 @@ class PageController extends Controller
     }
 
     /**
-     *
+     * @return Response
      */
     public function aboutAction()
     {
-        return $this->render("about.php");
+        return $this->render('about.html.twig', [
+            'val' => 'Valuueeee'
+        ]);
     }
 
     /**
-     *
+     * @return Response
      */
     public function homePostAction()
     {
-        return $this->render("ehmerde.php");
+        return $this->render('ehmerde.html.twig', []);
     }
 }

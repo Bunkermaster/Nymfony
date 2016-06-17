@@ -1,55 +1,57 @@
 <?php
 namespace Model\Entity;
 
-use Doctrine\ORM;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Page
+ * Page Entity
  * @package Model\Entity
  * @author Yann Le Scouarnec <yann.le-scouarnec@hetic.net>
- * @Entity @Table(name="page")
- **/
+ * @ORM\Entity(repositoryClass="Model\PageRepository")
+ * @ORM\Table(name="page")
+ */
 class Page
 {
-
     /**
-     * @Id @Column(type="integer") @GeneratedValue
      * @var int
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="integer")
      */
     private $id;
     /**
      * @var string
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      **/
     private $slug;
     /**
      * @var string
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      **/
     private $h1;
     /**
      * @var string
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      **/
     private $body;
     /**
      * @var string
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      **/
     private $title;
     /**
      * @var string
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      **/
     private $img;
     /**
      * @var string
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      **/
     private $span_text;
     /**
      * @var string
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      **/
     private $span_class;
 

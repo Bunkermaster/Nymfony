@@ -24,9 +24,9 @@
   "autoload": {
     "psr-4": {
       "Controller\\": "Controller/",
-      "Helper\\": "Helper/",
-      "Exception\\": "Exception/",
-      "Interface\\": "Interface/",
+      "Helper\\": "core/Helper/",
+      "Exception\\": "core/Exception/",
+      "Interface\\": "core/Interface/",
       "Model\\": "Model/",
       "Model\\Entity\\": "Model/Entity/"
     }

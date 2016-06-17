@@ -1,0 +1,27 @@
+<?php
+namespace Controller;
+
+use Helper\Request;
+use Helper\Response;
+use Helper\ServiceContainer;
+use Helper\Controller;
+
+/**
+ * Class {{ controllerName }}
+ * @package Controller
+ */
+class {{ controllerName }} extends Controller
+{
+    /**
+    * {{ controllerName }} constructor.
+    */
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+{% for method in methods %}
+    {%  include('controller.method.php.twig')  %}
+{% endfor  %}
+
+}

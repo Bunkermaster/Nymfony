@@ -6,6 +6,21 @@
 define('APP_ROOT_DIR', __DIR__."/");
 /**
  * string
+ * Core directory
+ */
+define('APP_CORE_DIR', APP_ROOT_DIR.'core/');
+/**
+ * string
+ * Config directory
+ */
+define('APP_CONFIG_DIR', APP_CORE_DIR.'config/');
+/**
+ * string
+ * View directory
+ */
+define('APP_CACHE_DIR', APP_CORE_DIR.'cache/');
+/**
+ * string
  * View directory
  */
 define('APP_VIEW_DIR', APP_ROOT_DIR.'View/');
@@ -13,7 +28,7 @@ define('APP_VIEW_DIR', APP_ROOT_DIR.'View/');
  * string
  * Logs directory
  */
-define('APP_LOG_DIR', APP_ROOT_DIR.'logs/');
+define('APP_LOG_DIR', APP_CORE_DIR.'logs/');
 /**
  * string
  * Application log file path

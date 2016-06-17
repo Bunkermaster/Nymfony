@@ -1,0 +1,10 @@
+{
+  "APP_DEV_MODE": true,
+  "APP_DEFAULT_ROUTE": "home",
+  "APP_DB_HOST": "localhost",
+  "APP_DB_PORT": "3306",
+  "APP_DB_NAME": "nymfony",
+  "APP_DB_USER": "root",
+  "APP_DB_PASS": "root",
+  "APP_DB_DRIVER": "pdo_mysql"
+}

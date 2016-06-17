@@ -1,0 +1,9 @@
+{% extends "base.html.twig" %}
+{% block content %}
+<div class="jumbotron">
+    <h1>Exception caught</h1>
+</div>
+<div class="alert alert-warning">
+{{ exception.__toString|nl2br }}
+</div>
+{% endblock %}
