@@ -23,6 +23,4 @@ $config = Setup::createAnnotationMetadataConfiguration($path, ConfigurationManag
 $config->setMetadataCacheImpl($cache);
 $config->setQueryCacheImpl($cache);
 $config->setMetadataDriverImpl($driver);
-
-// create entity manager
 $entityManager = ServiceContainer::getService(EntityManager::create($conn, $config));

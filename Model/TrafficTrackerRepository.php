@@ -29,7 +29,10 @@ class TrafficTrackerRepository extends Repository
             ->setHttpMethod($data['http_method'])
             ->setRouteIdentifier($data['route_identifier'])
             ->setSessionId($data['session_id'])
-            ->setUri($data['uri']);
+            ->setHttpReferer($data['http_referer'])
+            ->setHttpUserAgent($data['http_user_agent'])
+            ->setUri($data['uri'])
+            ->setHeaders($data['headers']);
         $this->entityManager->persist($trafficTracker);
         $this->entityManager->flush();
         return $trafficTracker->getId();

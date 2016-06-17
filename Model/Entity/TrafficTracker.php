@@ -39,9 +39,56 @@ class TrafficTracker
      */
     private $http_method;
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string",length=255)
      */
     private $http_referer;
+    /**
+     * @var string
+     * @ORM\Column(type="string",length=255)
+     */
+    private $http_user_agent;
+    /**
+     * @var string
+     * @ORM\Column(type="string",length=10000)
+     */
+    private $headers;
+    /**
+     * @return mixed
+     */
+    public function getHttpUserAgent()
+    {
+        return $this->http_user_agent;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHeaders()
+    {
+        return $this->headers;
+    }
+
+    /**
+     * @param mixed $headers
+     * @return $this
+     */
+    public function setHeaders($headers)
+    {
+        $this->headers = $headers;
+
+        return $this;
+    }
+
+    /**
+     * @param mixed $http_user_agent
+     * @return $this
+     */
+    public function setHttpUserAgent($http_user_agent)
+    {
+        $this->http_user_agent = $http_user_agent;
+
+        return $this;
+    }
 
     /**
      * @return mixed

@@ -16,12 +16,14 @@ class TrafficTracker
         $request = ServiceContainer::getService('Request');
         $route = Router::getCurrentRoute();
         $trafficTracker = new TrafficTrackerRepository();
-        dump($trafficTracker->insert([
+        return $trafficTracker->insert([
             'uri' => $request->URI,
             'http_method' => $request->HTTP['method'],
             'route_identifier' => $route->routeIdentifier,
             'session_id' => session_id(),
             'http_referer' => $request->HTTP_REFERER,
-        ]));
+            'http_user_agent' => $request->USER_AGENT,
+            'headers' => json_encode($request->headers),
+        ]);
     }
 }

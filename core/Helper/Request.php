@@ -44,6 +44,10 @@ class Request
      * @var string
      */
     public $HTTP_REFERER;
+    /**
+     * @var array
+     */
+    public $headers;
 
     /**
      * Request constructor.
@@ -59,7 +63,8 @@ class Request
         // reference OPTIONS GET HEAD POST PUT DELETE TRACE CONNECT PATCH
         $this->HTTP['method'] = $_SERVER['REQUEST_METHOD'] ?? false;
         $this->IP = $_SERVER['REMOTE_ADDR'] ?? false;
-        $this->USER_AGENT = $_SERVER['HTTP_USER_AGENT'] ?? false;
-        $this->HTTP_REFERER = $_SERVER['HTTP_REFERER'] ?? false;
+        $this->USER_AGENT = $_SERVER['HTTP_USER_AGENT'] ?? '';
+        $this->HTTP_REFERER = $_SERVER['HTTP_REFERER'] ?? '';
+        $this->headers = \http_get_request_headers();
     }
 }
