@@ -32,7 +32,8 @@ class TrafficTrackerRepository extends Repository
             ->setHttpReferer($data['http_referer'])
             ->setHttpUserAgent($data['http_user_agent'])
             ->setUri($data['uri'])
-            ->setHeaders($data['headers']);
+            ->setHeaders($data['headers'])
+            ->setAcceptLanguage($data['acceptLanguage']);
         $this->entityManager->persist($trafficTracker);
         $this->entityManager->flush();
         return $trafficTracker->getId();

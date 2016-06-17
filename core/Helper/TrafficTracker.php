@@ -24,6 +24,7 @@ class TrafficTracker
             'http_referer' => $request->HTTP_REFERER,
             'http_user_agent' => $request->USER_AGENT,
             'headers' => json_encode($request->headers),
+            'acceptLanguage' => $request->headers['Accept-Language'],
         ]);
     }
 }

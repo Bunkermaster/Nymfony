@@ -53,6 +53,31 @@ class TrafficTracker
      */
     private $headers;
     /**
+     * @var string
+     * @ORM\Column(type="string")
+     */
+    private $acceptLanguage;
+
+    /**
+     * @return string
+     */
+    public function getAcceptLanguage()
+    {
+        return $this->acceptLanguage;
+    }
+
+    /**
+     * @param string $acceptLanguage
+     * @return $this
+     */
+    public function setAcceptLanguage($acceptLanguage)
+    {
+        $this->acceptLanguage = $acceptLanguage;
+
+        return $this;
+    }
+    
+    /**
      * @return mixed
      */
     public function getHttpUserAgent()
