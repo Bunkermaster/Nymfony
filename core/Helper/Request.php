@@ -40,6 +40,10 @@ class Request
      * @var string
      */
     public $USER_AGENT;
+    /**
+     * @var string
+     */
+    public $HTTP_REFERER;
 
     /**
      * Request constructor.
@@ -56,5 +60,6 @@ class Request
         $this->HTTP['method'] = $_SERVER['REQUEST_METHOD'] ?? false;
         $this->IP = $_SERVER['REMOTE_ADDR'] ?? false;
         $this->USER_AGENT = $_SERVER['HTTP_USER_AGENT'] ?? false;
+        $this->HTTP_REFERER = $_SERVER['HTTP_REFERER'] ?? false;
     }
 }

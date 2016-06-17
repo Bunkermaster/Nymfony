@@ -1,11 +1,8 @@
 <?php
 namespace Helper;
 
-use Helper\TrafficTracker;
 use Exception\FrontControllerException;
-use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
-use Helper\ConfigurationManager;
+use Monolog\{Logger, Handler\StreamHandler};
 
 /**
  * Class FrontController
@@ -21,7 +18,7 @@ class FrontController extends Controller
     public function __construct()
     {
         parent::__construct();
-        // get logger 
+        // get logger
         $logger = ServiceContainer::getService('Logger');
         $logger->pushHandler(new StreamHandler(APP_LOG_FILE, Logger::INFO));
         if (ConfigurationManager::getConfig('APP_DEV_MODE') === true) {
@@ -48,7 +45,7 @@ class FrontController extends Controller
         // get current route's info
         $route = Router::getRoute($currRoute);
         Router::setCurrentRoute($route->routeIdentifier);
-        TrafficTracker::trackIt();
+        TrafficTracker::init();
         if (!$route) {
             // if the route is not found, 404 error
             $this->render('scafolding/404.html.twig', [], 404);

@@ -1,8 +1,7 @@
 <?php
 namespace Helper;
 
-use Helper\Router;
-use Helper\ServiceContainer;
+use Model\TrafficTrackerRepository;
 
 /**
  * Class TrafficTracker
@@ -11,10 +10,18 @@ use Helper\ServiceContainer;
  */
 class TrafficTracker
 {
-    public static function trackIt()
+    public static function init()
     {
+        /** @var Request $request */
         $request = ServiceContainer::getService('Request');
         $route = Router::getCurrentRoute();
-        
+        $trafficTracker = new TrafficTrackerRepository();
+        dump($trafficTracker->insert([
+            'uri' => $request->URI,
+            'http_method' => $request->HTTP['method'],
+            'route_identifier' => $route->routeIdentifier,
+            'session_id' => session_id(),
+            'http_referer' => $request->HTTP_REFERER,
+        ]));
     }
 }
