@@ -20,19 +20,19 @@ return $this->render("somepage.html.twig", [
 
 ## Helper\Router
 
-Routes are declared in the `core/config/routes.json` file. See [Router info](./Helper/ROUTER.md)
+Routes are declared in the `core/config/routes.json` file. See [Router info](./core/Helper/ROUTER.md)
 
 ## Helper\ServiceContainer
 
-Services are declared in the `core/config/services.json` file. See [ServiceContainer info](./Helper/SERVICECONTAINER.md)
+Services are declared in the `core/config/services.json` file. See [ServiceContainer info](./core/Helper/SERVICECONTAINER.md)
 
 ## Helper\CLITableBuilder
 
-See [CLITableBuilder info](./Helper/CLITABLEBUILDER.md)
+See [CLITableBuilder info](./core/Helper/CLITABLEBUILDER.md)
 
 ## Helper\CLIShellColor
 
-See [CLIShellColor info](./Helper/CLISHELLCOLOR.md)
+See [CLIShellColor info](./core/Helper/CLISHELLCOLOR.md)
 
 ## MIT License
 
